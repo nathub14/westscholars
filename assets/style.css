@@ -1,4 +1,4 @@
-/* West Scholars — shared site styles */
+/* West Scholars: shared site styles */
 
 :root {
   --navy: #0f2650;
@@ -382,17 +382,23 @@ section { padding: 64px 0; }
 .price-list li {
   padding: 8px 0;
   border-top: 1px solid var(--border);
-  display: flex;
-  gap: 10px;
   font-size: 0.94rem;
+  color: var(--ink-soft);
 }
 
 .price-list li:first-child { border-top: none; }
 
-.price-list li::before {
-  content: "✓";
-  color: var(--gold-dark);
-  font-weight: 700;
+.price-list li b { color: var(--navy); }
+
+.price-note {
+  text-align: left;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
 }
 
 .badge {
@@ -591,6 +597,281 @@ section { padding: 64px 0; }
   font-size: 0.93rem;
 }
 
+/* ---------- Social proof strip ---------- */
+
+.social-proof {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-proof a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.section-white .social-proof a,
+.section-cream .social-proof a {
+  background: var(--paper);
+  border-color: var(--border);
+  color: var(--navy);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Comparison table ---------- */
+
+.vs-table {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.vs-table .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.vs-table .row.head {
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.vs-table .row.head div:last-child { background: var(--gold-dark); }
+
+.vs-table .row + .row { border-top: 1px solid var(--border); }
+
+.vs-table .row div {
+  padding: 14px 18px;
+  font-size: 0.92rem;
+}
+
+.vs-table .row:not(.head) div:first-child {
+  color: var(--ink-soft);
+  background: var(--cream);
+}
+
+.vs-table .row:not(.head) div:last-child {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* ---------- Skills tags ---------- */
+
+.skills-block {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.skills-group {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.skills-group h4 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-size: 0.95rem;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+/* ---------- Stats ---------- */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.stat-hero {
+  background: var(--navy);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-hero .stat-num {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.stat-hero p {
+  color: #dde5f6;
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.stat-side {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-side .stat-num {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.stat-side p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+}
+
+.stat-disclosure {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin-top: 18px;
+}
+
+/* ---------- Guarantees ---------- */
+
+.guarantee-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.guarantee-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+.guarantee-card .name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 8px;
+}
+
+.guarantee-card h3 {
+  margin: 0 0 8px;
+  color: var(--navy);
+}
+
+.guarantee-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+}
+
+/* ---------- Contact form ---------- */
+
+.contact-form {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  max-width: 480px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+.form-field {
+  display: grid;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--navy);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.contact-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  margin: 26px auto 16px;
+  max-width: 480px;
+}
+
+.contact-divider::before,
+.contact-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -621,4 +902,13 @@ section { padding: 64px 0; }
   .referral-box { grid-template-columns: 1fr; padding: 28px; }
   .site-header .wrap { flex-direction: column; align-items: flex-start; }
   .site-header nav { width: 100%; justify-content: flex-start; }
+  .skills-block { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .guarantee-grid { grid-template-columns: 1fr; }
+  .vs-table .row { grid-template-columns: 1fr; }
+  .vs-table .row.head div:last-child { background: var(--navy); }
+}
+
+@media (max-width: 560px) {
+  .skills-block { grid-template-columns: 1fr; }
 }
