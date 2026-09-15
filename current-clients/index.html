@@ -1,246 +1,338 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <title>Current Clients | West Scholars</title>
-<meta name="description" content="West Scholars current clients: Term 4 pricing, guarantees, the referral cash-back program, reviews, and the feedback survey.">
+<meta name="description" content="West Scholars current clients: Term 4 re-enrolment, the guarantee, the referral cash back program, reviews and the feedback survey.">
+
+
+<meta name="theme-color" content="#0a1c3d">
 <link rel="icon" href="/assets/logo.png">
+<link rel="apple-touch-icon" href="/assets/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="/">
-      <img src="/assets/logo.png" alt="West Scholars logo">
+      <img src="/assets/logo.png" alt="" width="40" height="40">
       <span class="brand-text">
         <strong>West Scholars</strong>
         <span>Education</span>
       </span>
     </a>
-    <nav>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Open menu"><span class="bars"></span></label>
+
+    <nav class="site-nav" aria-label="Main">
       <a href="#pricing">Term 4</a>
       <a href="#guarantee">Guarantee</a>
       <a href="#referral">Referral</a>
       <a href="#reviews">Reviews</a>
       <a href="#survey">Feedback</a>
-      <a class="nav-cta" href="#pricing">Enrol now</a>
+      <a class="nav-cta" href="#contact">Re-enrol</a>
     </nav>
   </div>
 </header>
 
-<section class="hero" style="padding-bottom:56px;">
-  <div class="wrap" style="grid-template-columns:1fr;">
+<main id="main">
+
+<!-- ========================= HERO ========================= -->
+<section class="hero hero-single">
+  <div class="wrap">
     <div>
       <span class="eyebrow">For current West Scholars families</span>
       <h1>Thank you for being part of the first West Scholars cohort.</h1>
-      <p class="lead">This page is just for you: Term 4 pricing, the guarantee, the referral program, and quick links to leave a review if you've got a minute to spare.</p>
+      <hr class="rule">
+      <p class="lead">This page is just for you: Term 4 re-enrolment, the guarantee, the referral program, and quick links to leave a review if you have a minute to spare.</p>
+      <div class="btn-row hero-actions">
+        <a class="btn btn-gold btn-lg" href="#contact">Secure your Term 4 spot</a>
+        <a class="btn btn-outline btn-lg" href="#referral">See the referral program</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section-white" id="pricing">
+<!-- ========================= RESULTS REMINDER ========================= -->
+<section class="section-navy">
+  <div class="wrap">
+    <div class="result-headline">
+      <span class="eyebrow">What last term looked like</span>
+      <h2><span class="big">30% growth</span> from baseline to final mark.</h2>
+      <p class="lead center-x">Cohort average across every student, from their baseline mock to their final one, over 10 weeks. Your child's own numbers are in their platform account, and I am always happy to walk through them with you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= PRICING ========================= -->
+<section class="section-white sec-major" id="pricing">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Term 4 &middot; 8 weeks</span>
       <h2>Lock in your spot for Term 4</h2>
-      <p>Same format that's gotten your child this far, plus a few things being added this term.</p>
+      <p>The same format that has gotten your child this far, plus a few things being added this term.</p>
     </div>
+
     <div class="price-card">
-      <span class="badge">Existing family rate</span>
-      <div class="amount">$500</div>
-      <div class="period">for the full 8 week term</div>
-      <ul class="price-list">
-        <li><b>What's included:</b> weekly group class, weekly individual clinic, writing marked every week with real feedback, a custom homework engine built from your child's own results, and continued access to the practice platform.</li>
-        <li><b>New this term:</b> weekly marked writing and constant written feedback, properly running every week (not just some weeks like last term). Both guarantees below apply.</li>
-      </ul>
-      <a class="btn btn-navy btn-block" href="#contact">Message me to secure your spot</a>
+      <div class="price-head">
+        <span class="badge">Existing family rate</span>
+        <div class="price-amount">
+          <span class="now">$500</span>
+          <span class="was">$1,000</span>
+          <span class="off">50% off</span>
+        </div>
+        <div class="price-period">for the full 8 week term</div>
+      </div>
+      <div class="price-body">
+        <div class="lbl">What is included</div>
+        <ul class="price-list">
+          <li><b>Weekly group class</b> of four kids, in person</li>
+          <li><b>Weekly one-on-one clinic</b>, every single week</li>
+          <li><b>Writing marked every week</b>, with specific written feedback</li>
+          <li><b>Homework rebuilt weekly</b> from your child's own results</li>
+          <li><b>Continued access to the practice platform</b>, including everything new</li>
+          <li><b>Timed mocks</b> under real exam conditions</li>
+        </ul>
+
+        <div class="lbl">New this term</div>
+        <ul class="price-list">
+          <li><b>Marked writing every single week</b>, properly, not just some weeks like last term</li>
+          <li><b>Constant written feedback</b> running the whole term through</li>
+          <li><b>The worth it guarantee</b> applies to this term too</li>
+        </ul>
+
+        <a class="btn btn-navy btn-block btn-lg" href="#contact">Message me to secure your spot</a>
+        <p class="price-foot">Then a full refund if you do not think it was worth it.</p>
+      </div>
     </div>
-    <div class="notice pending" style="max-width:460px;margin:20px auto 0;">
-      12 spots for Term 4 across all classes. Existing families get first right of refusal before this opens up publicly.
-    </div>
+
+    <p class="notice pending wrap-narrow mt-8">12 spots for Term 4 across all classes, and classes are four kids each.</p>
   </div>
 </section>
 
-<section class="section-cream" id="guarantee">
+<!-- ========================= GUARANTEE ========================= -->
+<section class="section-cream sec-major" id="guarantee">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">If it doesn't work out</span>
-      <h2>Two guarantees, no small print</h2>
-    </div>
-    <div class="guarantee-grid">
-      <div class="guarantee-card">
-        <div class="name">Improve, or my shoes</div>
-        <h3>The improvement guarantee</h3>
-        <p>If your child's scores don't improve over the term, you get every dollar back.</p>
-      </div>
-      <div class="guarantee-card">
-        <div class="name">Club a baby seal</div>
-        <h3>The happiness guarantee</h3>
-        <p>If you're not happy with the term for any reason, at any point, you get every dollar back too. No conditions attached.</p>
-      </div>
+    <div class="guarantee">
+      <div class="seal" aria-hidden="true">&#9878;</div>
+      <span class="eyebrow">The worth it guarantee</span>
+      <h2>If you do not think it was worth it, I do not want your money.</h2>
+      <p class="lead">At any point in the term, for any reason at all, ask and you get every dollar back. You do not have to justify it, prove anything, or fill in a form. You just have to not think it was worth it.</p>
+      <p class="signoff">That is the whole guarantee.</p>
     </div>
   </div>
 </section>
 
-<section class="section-navy" id="referral">
+<!-- ========================= REFERRAL ========================= -->
+<section class="section-navy sec-major" id="referral">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Referral program</span>
-      <h2>Know another family who'd be a good fit? Get paid for it.</h2>
-      <p>Every family in this program found it through word of mouth. This is how we say thank you for keeping that going.</p>
+      <h2>Know another family who would be a good fit?</h2>
+      <p>Every family in this program found it through word of mouth. This is how I say thank you for keeping that going.</p>
     </div>
-    <div class="referral-box">
-      <div>
-        <div class="referral-amounts">
-          <div class="referral-amount">
-            <div class="num">$100</div>
-            <div class="lbl">cash back to you</div>
+
+    <div class="referral-amounts wrap-prose">
+      <div class="referral-amount">
+        <div class="num">$100</div>
+        <div class="lbl">cash back to you</div>
+      </div>
+      <div class="referral-amount">
+        <div class="num">$100</div>
+        <div class="lbl">cash back to them</div>
+      </div>
+    </div>
+    <p class="referral-note">Per family you bring on board. Siblings count exactly the same as anyone else, and there is no cap on how many families you refer.</p>
+
+    <div class="referral-steps wrap-prose">
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <h4>Send me their details</h4>
+            <p>Tell me who you are thinking of and a bit about their child. I will have a quick chat with them to check it is a good fit before anything is promised.</p>
           </div>
-          <div class="referral-amount">
-            <div class="num">$100</div>
-            <div class="lbl">cash back to them</div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <h4>They join and pay for their first term</h4>
+            <p>Once they are enrolled and paid up, the referral is confirmed.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <h4>Cash back to both of you</h4>
+            <p>You get $100 cash back, and so do they. No catch, and no waiting for a second term.</p>
           </div>
         </div>
       </div>
-      <div>
-        <div class="steps">
-          <div class="step">
-            <div class="num">1</div>
-            <div><h4 style="color:#fff;">Send me their details</h4><p style="color:#cdd7ee;">Tell me who you're thinking of and a bit about their child. I'll have a quick chat with them to check it's a good fit before anything is promised.</p></div>
-          </div>
-          <div class="step">
-            <div class="num">2</div>
-            <div><h4 style="color:#fff;">They join and pay for their first term</h4><p style="color:#cdd7ee;">Once they're enrolled and paid up, the referral is confirmed.</p></div>
-          </div>
-          <div class="step">
-            <div class="num">3</div>
-            <div><h4 style="color:#fff;">Cash back to both of you</h4><p style="color:#cdd7ee;">You get $100 cash back, and so do they. No catch, no waiting for a second term.</p></div>
-          </div>
-        </div>
+      <div class="btn-row center mt-8">
+        <a class="btn btn-gold" href="#contact">Refer a family</a>
       </div>
-    </div>
-    <div class="referral-amount" style="max-width:420px;margin:22px auto 0;background:rgba(208,147,44,0.14);border-color:rgba(208,147,44,0.4);">
-      <div class="num" style="color:var(--gold);">$150</div>
-      <div class="lbl" style="color:#fff;">cash back for enrolling a sibling, a bit more than a standard referral</div>
     </div>
   </div>
 </section>
 
-<section class="section-cream" id="reviews">
+<!-- ========================= REVIEWS ========================= -->
+<section class="section-cream sec-major" id="reviews">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">If you've got 60 seconds</span>
+      <span class="eyebrow">If you have 60 seconds</span>
       <h2>Leave a review</h2>
       <p>Reviews are how new families find West Scholars. If your child has gotten value out of this term, a couple of honest sentences somewhere below genuinely helps.</p>
     </div>
-    <div class="review-grid">
+
+    <div class="review-grid wrap-prose">
       <a class="review-tile" href="https://au.trustpilot.com/review/westscholars.com.au" target="_blank" rel="noopener">
-        <div class="emoji">&#11088;</div>
+        <div class="emoji" aria-hidden="true">&#11088;</div>
         <div class="platform">Trustpilot</div>
         <div class="hint">Public review, about 2 minutes</div>
       </a>
-      <a class="review-tile" href="#" target="_blank" rel="noopener">
+      <a class="review-tile" href="#reviews">
         <span class="todo-flag">Add link</span>
-        <div class="emoji">&#128205;</div>
+        <div class="emoji" aria-hidden="true">&#128205;</div>
         <div class="platform">Google Business</div>
         <div class="hint">Shows up when parents search us</div>
       </a>
       <a class="review-tile" href="https://www.facebook.com/people/West-Scholars-Education/61594048093920/" target="_blank" rel="noopener">
-        <div class="emoji">&#128075;</div>
+        <div class="emoji" aria-hidden="true">&#128075;</div>
         <div class="platform">Facebook Page</div>
         <div class="hint">A comment or a review, either helps</div>
       </a>
-      <a class="review-tile" href="mailto:contact@westscholars.com.au?subject=My%20review%20for%20West%20Scholars&body=Here's%20what%20I%20think%20of%20West%20Scholars%20this%20term%3A%0A%0A">
-        <div class="emoji">&#128221;</div>
-        <div class="platform">Quick written review</div>
-        <div class="hint">Prefer to just type it out? This opens an email to me.</div>
+      <a class="review-tile" href="mailto:contact@westscholars.com.au?subject=My%20review%20for%20West%20Scholars&body=Here%27s%20what%20I%20think%20of%20West%20Scholars%20this%20term%3A%0A%0A">
+        <div class="emoji" aria-hidden="true">&#128221;</div>
+        <div class="platform">Just email it</div>
+        <div class="hint">Prefer to type it out? This opens an email to me.</div>
       </a>
     </div>
 
-    <div style="max-width:720px;margin:44px auto 0;">
-      <div class="section-head" style="margin-bottom:22px;">
-        <h2 style="font-size:1.3rem;">Not sure what to write? Steal one of these.</h2>
+    <div class="wrap-prose mt-16">
+      <div class="section-head mb-8">
+        <h2 class="size-h3">Not sure what to write? Steal one of these.</h2>
         <p>Pick whichever is true for you, tweak it, done. Honest and specific beats long and generic.</p>
       </div>
       <div class="prompt-list">
         <div class="prompt-card">
           <div class="q">What changed for your child this term?</div>
-          <div class="a">Think confidence, specific skills, or exam habits, not just "he improved."</div>
+          <div class="a">Think confidence, specific skills, or exam habits, rather than just "he improved".</div>
           <div class="copy-line">"My daughter went from freezing up on writing prompts to actually planning her ideas before she starts. That alone was worth it."</div>
         </div>
         <div class="prompt-card">
-          <div class="q">What's different about this compared to other tutoring you've tried?</div>
+          <div class="q">What is different about this compared to other tutoring you have tried?</div>
           <div class="a">The platform, the weekly writing marking, the personalised homework, whatever stood out to you.</div>
           <div class="copy-line">"Every week's homework was actually built around what my son got wrong the week before, not a generic worksheet everyone gets."</div>
         </div>
         <div class="prompt-card">
           <div class="q">Would you recommend West Scholars to another parent, and why?</div>
-          <div class="a">This is the line that convinces the next family. Be specific about who it's a good fit for.</div>
-          <div class="copy-line">"If your child is sitting ASET or a scholarship exam next year, I'd tell you to get in now. Classes are small and it shows."</div>
+          <div class="a">This is the line that convinces the next family. Be specific about who it is a good fit for.</div>
+          <div class="copy-line">"If your child is sitting ASET or a scholarship exam next year, I would tell you to get in now. Classes are four kids and it shows."</div>
         </div>
       </div>
-      <p style="text-align:center;color:var(--ink-soft);font-size:0.85rem;margin-top:18px;">Nathan: you mentioned wanting to redo these prompts with your own template. Send it over and I'll swap these in.</p>
+      <p class="fine-print center mt-6">Nathan: these three prompts are placeholders. Send me your own template and I will swap them in.</p>
     </div>
   </div>
 </section>
 
-<section class="section-white" id="survey">
+<!-- ========================= SURVEY ========================= -->
+<section class="section-white sec-major" id="survey">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Anonymous feedback</span>
       <h2>Tell me what to do better</h2>
-      <p>This one's separate from reviews. It's completely anonymous, and it's how the program actually improves term to term.</p>
+      <p>This one is separate from reviews. It is completely anonymous, and it is how the program actually improves term to term.</p>
     </div>
-    <div class="card" style="max-width:520px;margin:0 auto;text-align:center;">
-      <div class="icon" style="margin:0 auto 16px;">&#128172;</div>
+    <div class="card wrap-narrow center">
+      <div class="icon center-x" aria-hidden="true">&#128172;</div>
       <h3>Feedback survey</h3>
-      <p style="margin-bottom:20px;">A few quick questions: what to stop doing, what to add more of, and whether you want more or less contact from me.</p>
-      <a class="btn btn-navy btn-block" href="#" target="_blank" rel="noopener">Open the survey (link coming soon)</a>
+      <p class="mb-6">A few quick questions: what to stop doing, what to add more of, and whether you want more or less contact from me.</p>
+      <span class="btn btn-block btn-disabled" role="button" aria-disabled="true">Survey link coming soon</span>
     </div>
   </div>
 </section>
 
-<section class="section-cream" id="contact">
+<!-- ========================= CONTACT ========================= -->
+<section class="section-cream sec-major" id="contact">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Ready for Term 4?</span>
       <h2>Message me to confirm your spot</h2>
-      <p>Whether it's re-enrolling, referring a friend, or just a question, reach out directly.</p>
+      <p>Whether it is re-enrolling, referring a friend, or just a question, reach out directly.</p>
     </div>
 
-    <form class="contact-form" action="https://formsubmit.co/contact@westscholars.com.au" method="POST">
+    <form class="form-card" action="https://formsubmit.co/contact@westscholars.com.au" method="POST">
+      <h3>Send me a message</h3>
+      <p class="form-intro">Goes straight to my inbox. I answer personally, usually same day.</p>
+
       <input type="hidden" name="_subject" value="Current client message, West Scholars">
       <input type="hidden" name="_captcha" value="false">
-      <div class="form-field">
-        <label for="name">Your name</label>
-        <input id="name" name="Name" type="text" required placeholder="Sarah Nguyen">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://westscholars.com.au/thanks.html">
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="cc-name">Your name</label>
+          <input id="cc-name" name="Name" type="text" required autocomplete="name" placeholder="Sarah Nguyen">
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="cc-email">Email</label>
+            <input id="cc-email" name="Email" type="email" required autocomplete="email" placeholder="sarah@example.com">
+          </div>
+          <div class="field">
+            <label for="cc-phone">Phone</label>
+            <input id="cc-phone" name="Phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="04xx xxx xxx">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cc-topic">What is this about?</label>
+          <select id="cc-topic" name="Topic" required>
+            <option value="">Select one</option>
+            <option>Re-enrolling for Term 4</option>
+            <option>Referring a family</option>
+            <option>A question about my child's progress</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cc-message">Message <span class="opt">(optional)</span></label>
+          <textarea id="cc-message" name="Message" rows="3" placeholder="Anything at all"></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold btn-block btn-lg">Send message</button>
       </div>
-      <div class="form-field">
-        <label for="phone">Your phone number</label>
-        <input id="phone" name="Phone" type="tel" required placeholder="04xx xxx xxx">
-      </div>
-      <div class="form-field">
-        <label for="message">What's this about?</label>
-        <textarea id="message" name="Message" rows="3" placeholder="Re-enrolling for Term 4, a referral, a question, anything"></textarea>
-      </div>
-      <button type="submit" class="btn btn-gold btn-block">Send message</button>
     </form>
 
-    <div class="contact-divider">or reach out directly</div>
+    <div class="or-divider">or reach me directly</div>
 
-    <div class="grid grid-2" style="max-width:480px;margin:0 auto;">
+    <div class="grid grid-2 wrap-narrow">
       <a class="btn btn-ghost btn-block" href="mailto:contact@westscholars.com.au">Email me</a>
-      <a class="btn btn-ghost btn-block" href="tel:0481829122">Call / text 0481 829 122</a>
+      <a class="btn btn-ghost btn-block" href="tel:0481829122">Call or text 0481 829 122</a>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer class="site-footer">
   <div class="wrap">
-    <span>&copy; 2026 West Scholars Education. Perth, WA.</span>
-    <a href="/">Back to main site</a>
+    <span>&copy; 2026 West Scholars Education. Perth, Western Australia.</span>
+    <div class="links">
+      <a href="/">Back to the main site</a>
+      <a href="mailto:contact@westscholars.com.au">contact@westscholars.com.au</a>
+      <a href="tel:0481829122">0481 829 122</a>
+    </div>
   </div>
 </footer>
 

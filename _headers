@@ -1,0 +1,33 @@
+# Cloudflare Pages headers file.
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+# Applied at the edge. No build step involved, this file is read as-is.
+
+/*
+  # Stop the site being framed by anyone (clickjacking).
+  X-Frame-Options: DENY
+  # Stop browsers guessing content types.
+  X-Content-Type-Options: nosniff
+  # Do not leak the full URL to third parties.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # This site needs none of these. Deny them all.
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
+  # Force HTTPS for two years, including subdomains.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  # There is no executable JavaScript on this site. The only third parties are
+  # Google Fonts (stylesheet + font files) and FormSubmit (form POST target).
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+
+# Fingerprint-free assets, so keep the cache short enough that a CSS change
+# reaches people the same day.
+/assets/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/*.pdf
+  Cache-Control: public, max-age=86400
+
+
+/thanks.html
+  X-Robots-Tag: noindex, follow
+
+/guide.html
+  X-Robots-Tag: noindex, follow

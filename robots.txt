@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Confirmation pages carry their own noindex meta tag. They are not
+# disallowed here on purpose: a Disallow would stop crawlers reading that
+# tag, which is the opposite of what we want.
+
+Sitemap: https://westscholars.com.au/sitemap.xml
