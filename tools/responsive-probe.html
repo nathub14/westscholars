@@ -1,0 +1,58 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>probe</title>
+<body style="margin:0">
+<pre id="out">running</pre>
+<iframe id="f" style="border:0;height:800px"></iframe>
+<script>
+var pages = ['/index.html', '/current-clients/index.html', '/thanks.html', '/guide.html', '/404.html'];
+var widths = [320, 360, 390, 430, 600, 768, 820, 1024, 1280, 1600];
+var jobs = [];
+pages.forEach(function (p) { widths.forEach(function (w) { jobs.push([p, w]); }); });
+
+var out = [], i = 0;
+var f = document.getElementById('f');
+
+// An element is exempt if it lives inside a horizontal scroll container: a wide
+// table or diagram in its own scroller is the documented exception, not a bug.
+function inScroller(el, win) {
+  for (var n = el.parentElement; n && n.tagName !== 'BODY'; n = n.parentElement) {
+    var ox = win.getComputedStyle(n).overflowX;
+    if (ox === 'auto' || ox === 'scroll') return true;
+  }
+  return false;
+}
+
+function next() {
+  if (i >= jobs.length) {
+    document.getElementById('out').textContent = out.join('\n');
+    return;
+  }
+  var job = jobs[i++];
+  f.style.width = job[1] + 'px';
+  f.onload = function () {
+    var w = f.contentWindow, d = f.contentDocument;
+    var limit = w.innerWidth + 1;
+    var bad = [];
+    d.querySelectorAll('*').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) return;
+      if (r.right > limit || r.left < -1) {
+        var cls = (el.className || '').toString().trim().split(/\s+/).join('.');
+        if (cls === 'hp' || el.closest('.hp')) return;      // honeypot, off-screen by design
+        if (el.classList.contains('skip-link')) return;     // off-screen until focused
+        if (inScroller(el, w)) return;                      // inside its own scroller
+        bad.push(el.tagName.toLowerCase() + (cls ? '.' + cls : '') + ' w=' + Math.round(r.width) + ' right=' + Math.round(r.right));
+      }
+    });
+    var sw = d.documentElement.scrollWidth;
+    var flag = (sw > w.innerWidth || bad.length) ? '  <<< PROBLEM' : '';
+    out.push(job[0] + ' @' + job[1] + ' scrollW=' + sw + ' overflow=' + bad.length + flag);
+    if (bad.length) out.push('     ' + bad.slice(0, 6).join('\n     '));
+    setTimeout(next, 30);
+  };
+  f.src = job[0] + '?w=' + job[1];
+}
+next();
+</script>
+</body>

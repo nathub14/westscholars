@@ -96,23 +96,55 @@ tokens.
   homepage nav and footer and is indexable. It holds the existing-family rate
   and the referral payouts, so if that ever needs to change, the switch is a
   `noindex` meta tag plus removing those two links, not a robots.txt rule.
+- **The results chart is generated, not hand-written.** Source of truth is
+  `tools/chart.py`, which prints the SVG that is pasted inline into
+  `index.html`. Do not hand-edit the SVG. Its four series hues were run through
+  a colour-blindness and contrast validator; two of them fall below 3:1 on
+  white, which is exactly why every line carries a direct end label AND the
+  figures are repeated in the table view. Removing either breaks the
+  accessibility case for the palette.
+- **The chart's y-axis starts at zero and stays there.** A truncated axis would
+  make a 30% gain look like a 3x one, which contradicts the honesty the whole
+  page is positioned on.
+- **Students on the chart are anonymised (Student 1 to 4).** They are named
+  minors, and the chart publishes one child's declining result. Never put real
+  first names on a public page.
 - **Headless Chrome will not make a window narrower than about 500px on
   Windows.** Screenshots at `--window-size=390` render wider and clip. Measure
-  responsive behaviour with an iframe probe instead (see Verifying below).
+  responsive behaviour with an iframe probe instead. The probe must exempt
+  anything inside an `overflow-x: auto` ancestor, or the data table inside its
+  scroller reads as a false positive.
 
 ## Content rules
 
+Most of these are enforced by `check.py`, which carries a `BANNED` list with
+the reason for each retirement. If a check fires, the phrase was retired on
+purpose. Do not work around it.
+
 - **No em dashes or en dashes anywhere.** Use commas, full stops or a colon.
-  This is enforced by the check script.
+- **Copy must never narrate its own reasoning.** No "this page is just for you",
+  no "here is why I included this". That reads as AI self-talk. Write plain
+  descriptive copy, or a plain list of what is on the page.
 - **Never say "small classes". Say "four kids per class".** A number is proof, an
   adjective is marketing.
-- **The headline stat is "30% growth from baseline to final mark, in one term",
-  always with the pilot-cohort disclosure nearby.** Do not quote per-student or
-  per-section percentages from the results data. They are mathematically correct
-  but come from tiny samples, and a selectively framed statistic is a real
-  problem under Australian Consumer Law, not just a credibility one.
-- **One guarantee, called the Worth It Guarantee.** Full refund, any time, any
-  reason, no conditions.
+- **The term is eight weeks.** Every term-length reference says eight.
+- **Two fixed proper nouns**, used verbatim everywhere they appear:
+  - **The Sleep Like a Baby Guarantee** wherever the refund is mentioned.
+  - **The Zero Gaps Scientific Scholar System** for the Workshop, practice,
+    Clinic, patch cycle.
+- **Workshop** is the two hour weekly group class. **Clinic** is the 45 minute
+  weekly one-on-one. Always capitalised, never described generically.
+- **The headline stat is "30% from baseline to final mock, across an eight week
+  term", always with the early-results disclosure nearby.** Do not quote
+  per-student or per-section percentages from the results data. They are
+  mathematically correct but come from tiny samples, and a selectively framed
+  statistic is a real problem under Australian Consumer Law, not just a
+  credibility one. The 47% reading figure is retired and is in the banned list.
+- **"Science-based" must always be cashable.** Wherever the copy leans on it,
+  there is a nearby line naming spaced repetition and deliberate practice
+  specifically, and the FAQ answers it in full. If a parent asks what makes it
+  scientific, the site must already have answered. Do not add a science claim
+  without that anchor.
 - Never invent testimonials. There is a commented placeholder in `index.html`
   marking where real ones go once they exist.
 
@@ -183,3 +215,16 @@ deploys. `_headers` is applied at the edge with no build involved.
 - [ ] Consider moving the guide form to a real email list (MailerLite or
       ConvertKit) so leads land somewhere followable, rather than only in the
       inbox. The form action is a one-line swap when that happens
+
+## tools/
+
+Two helpers, not part of the deployed site.
+
+- `tools/chart.py` builds the results chart. Run it from the repo root, then
+  paste the printed `chart.svg` over the existing `<svg>` block in
+  `index.html`. Edit the data at the top of the file, never the SVG.
+- `tools/responsive-probe.html` measures every page at ten viewport widths and
+  reports any element overflowing the viewport. Serve the site, open
+  `/tools/responsive-probe.html`, and read the output. It is the reliable way
+  to check mobile layout, because headless screenshots at phone widths clip
+  rather than reflow on Windows.

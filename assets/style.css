@@ -467,6 +467,39 @@ section { padding-block: var(--sec-standard); }
 
 .hero-single .wrap { grid-template-columns: 1fr; max-width: var(--w-prose); }
 
+.hero-sub {
+  margin-top: var(--s-4);
+  font-size: var(--fs-body);
+  color: var(--navy-200);
+  max-width: 54ch;
+}
+
+/* A plain contents list, used instead of a paragraph explaining what the page
+   is for. Copy should never narrate itself. */
+.hero-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-6) 0 0;
+  display: grid;
+  gap: var(--s-2);
+  max-width: 46ch;
+}
+.hero-list li {
+  position: relative;
+  padding-left: var(--s-6);
+  color: var(--ink-on-navy);
+}
+.hero-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brass-400);
+}
+
 .hero-actions { margin-top: var(--s-8); }
 
 .hero-assurance {
@@ -1226,6 +1259,24 @@ section { padding-block: var(--sec-standard); }
   transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 .review-tile:hover { border-color: var(--brass-400); box-shadow: var(--e2); transform: translateY(-2px); }
+
+.review-tile.is-pending {
+  display: block;
+  background: var(--warm-100);
+  border-style: dashed;
+  box-shadow: none;
+  cursor: default;
+  color: var(--ink-soft);
+}
+.review-tile.is-pending:hover { border-color: var(--border-strong); box-shadow: none; transform: none; }
+.review-tile.is-pending .emoji { opacity: 0.55; }
+.review-tile.is-pending .platform { color: var(--ink-soft); }
+
+/* The pending flag is informational here, not a build TODO. */
+.review-tile.is-pending .todo-flag {
+  background: var(--brass-100);
+  color: var(--accent-text);
+}
 .review-tile .emoji { font-size: 1.75rem; }
 .review-tile .platform { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h4); margin: var(--s-3) 0 var(--s-1); }
 .review-tile .hint { font-size: var(--fs-sm); color: var(--ink-soft); }
@@ -1344,7 +1395,139 @@ section { padding-block: var(--sec-standard); }
 
 
 /* --------------------------------------------------------------------------
-   27. Utilities
+   27. Results chart
+   --------------------------------------------------------------------------
+   Inline SVG, no chart library and no JavaScript. Four series on a white card.
+   Two of the four hues sit below 3:1 against white, so the palette validator
+   requires relief: that is why every line carries a direct end label AND the
+   figures are repeated in the table below. Do not remove either.
+   -------------------------------------------------------------------------- */
+
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--e3);
+  padding: var(--s-8);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.chart-card .chart-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  color: var(--navy-800);
+  margin-bottom: var(--s-1);
+}
+.chart-card .chart-sub {
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+  margin-bottom: var(--s-6);
+}
+
+.chart { width: 100%; height: auto; display: block; font-family: var(--font-body); }
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  margin-top: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+.chart-legend span { display: inline-flex; align-items: center; gap: var(--s-2); }
+.chart-legend i {
+  width: 14px;
+  height: 3px;
+  border-radius: var(--r-full);
+  flex: none;
+}
+
+/* Series hues. Validated as a 4-slot categorical set against a white surface:
+   worst adjacent CVD deltaE 9.1, normal-vision 22.9. Two of the four fall below
+   3:1 on white, which is why the chart carries direct end labels and the table
+   view. Change one of these and re-run the palette validator. */
+.chart-legend i[data-c="1"] { background: #2a78d6; }
+.chart-legend i[data-c="2"] { background: #eb6834; }
+.chart-legend i[data-c="3"] { background: #1baf7a; }
+.chart-legend i[data-c="4"] { background: #eda100; }
+
+.table-view { margin-top: var(--s-4); }
+.table-view > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--accent-text);
+  padding: var(--s-2) 0;
+}
+.table-view > summary::-webkit-details-marker { display: none; }
+.table-view .scroller { overflow-x: auto; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+  margin-top: var(--s-3);
+  min-width: 420px;
+}
+.data-table th, .data-table td {
+  text-align: right;
+  padding: var(--s-2) var(--s-3);
+  border-bottom: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+.data-table th:first-child, .data-table td:first-child { text-align: left; }
+.data-table thead th {
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.data-table tbody td { color: var(--ink-soft); }
+.data-table tbody td:first-child { color: var(--navy-800); font-weight: 600; }
+.data-table caption {
+  caption-side: bottom;
+  text-align: left;
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+  padding-top: var(--s-3);
+}
+
+/* --------------------------------------------------------------------------
+   28. Feature list
+   -------------------------------------------------------------------------- */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4) var(--s-8);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.feature-grid li {
+  position: relative;
+  padding-left: var(--s-8);
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+.feature-grid li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--success);
+  font-weight: 700;
+}
+.feature-grid li b { color: var(--navy-800); font-weight: 600; display: block; }
+
+/* --------------------------------------------------------------------------
+   29. Utilities
    --------------------------------------------------------------------------
    A deliberately tiny set. Reach for these instead of writing a style="..."
    attribute in the HTML. If you need one that is not here, add it here.
@@ -1367,7 +1550,7 @@ section { padding-block: var(--sec-standard); }
 .size-h3 { font-size: var(--fs-h3); }
 
 /* --------------------------------------------------------------------------
-   25. Responsive
+   30. Responsive
    -------------------------------------------------------------------------- */
 
 @media (max-width: 960px) {
@@ -1432,6 +1615,8 @@ section { padding-block: var(--sec-standard); }
   .referral-amounts { grid-template-columns: 1fr; }
   .review-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .chart-card { padding: var(--s-6) var(--s-4); }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
   .guarantee { padding: var(--s-8); }
   .form-card { padding: var(--s-8) var(--s-6); }
@@ -1455,7 +1640,7 @@ section { padding-block: var(--sec-standard); }
 }
 
 /* --------------------------------------------------------------------------
-   26. Motion and print
+   31. Motion and print
    -------------------------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {

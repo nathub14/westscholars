@@ -72,15 +72,11 @@ tokens, so it cannot drift out of step with the stylesheet.
 
 - [ ] **Google Business review link** (`current-clients/index.html`, Reviews
       section). Still pending. The only remaining red "Add link" tag
-- [ ] Feedback survey link. The button is currently a deliberately
-      non-clickable disabled control rather than a dead link
-- [ ] The three review-prompt templates on the current clients page are a first
-      draft. Nathan is supplying his own
+- [ ] **Photos for the program section.** Nathan asked for these and they are
+      not in the repo yet. Drop them in `assets/` and they can be placed
 - [ ] **No testimonials yet.** There is a marked slot in `index.html` directly
       under the results section. Parent words will outrank every stat on the
       page, so this is the highest-value thing still missing
-- [ ] `chart_student_trajectories.png` not supplied. The results section is
-      text and stat tiles for now
 - [ ] The guide form captures leads to the inbox only. Moving it to a real
       email list (MailerLite or ConvertKit free tier) is a one-line change to
       the form action when you want follow-up sequences

@@ -32,6 +32,27 @@ VOID = {
     "meta", "param", "source", "track", "wbr",
 }
 
+# Phrases that must never appear again, with the reason shown on failure.
+# These are decisions, not preferences: each one was explicitly retired.
+BANNED = [
+    (r"small class",
+     'say "four kids per class" instead. A number is proof, an adjective is marketing'),
+    (r"\b(10|ten)[ -]week",
+     "the term is eight weeks. Every term-length reference must say eight"),
+    (r"worth it guarantee",
+     'the guarantee is "The Sleep Like a Baby Guarantee"'),
+    (r"improvement guarantee|happiness guarantee|club a baby seal|improve,? or my shoes",
+     "there is one guarantee, The Sleep Like a Baby Guarantee"),
+    (r"long track record",
+     'use "early results" framing instead'),
+    (r"this page is just for you|here is why I|here's why I",
+     "copy must not narrate its own reasoning. Write plain descriptive copy"),
+    (r"no strings|right of refusal",
+     "retired phrasing"),
+    (r"47%",
+     "the per-section improvement percentages are internal only, never public"),
+]
+
 failures = []
 notes = []
 
@@ -169,9 +190,12 @@ def main():
         for m in re.finditer(r'style="([^"]*)"', s):
             fail(page, 'inline style="%s"' % m.group(1))
 
-        # Marketing language rule.
-        if re.search(r"small class", s, re.I):
-            fail(page, 'says "small classes". Say "four kids per class".')
+        # Retired wording.
+        for pattern, why in BANNED:
+            for m in re.finditer(pattern, s, re.I):
+                ctx = s[max(0, m.start() - 30):m.start() + 40].replace("\n", " ")
+                fail(page, 'banned phrase "%s": %s. Near: ...%s...'
+                     % (m.group(0), why, ctx.strip()))
 
         # Structure.
         ids = re.findall(r'\sid="([^"]+)"', s)
