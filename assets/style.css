@@ -1231,8 +1231,13 @@ section { padding-block: var(--sec-standard); }
   padding-right: var(--s-12);
 }
 
-/* Honeypot: bots fill it, humans never see it. */
-.hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; overflow: hidden; }
+/* Honeypot: bots fill it, humans never see it. display:none, not an offscreen
+   shift: a field parked at left:-9999px is still a real, focusable,
+   autofillable field, and browser autofill or a password manager filling it
+   makes FormSubmit discard the submission silently while still redirecting the
+   parent to the thank-you page, so the enquiry looks sent and never arrives.
+   A display:none input is still submitted, which is what the honeypot needs. */
+.hp { display: none; }
 
 .form-foot { text-align: center; font-size: var(--fs-xs); color: var(--ink-soft); margin-top: var(--s-4); }
 

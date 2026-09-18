@@ -215,7 +215,25 @@ Every form must carry:
 
 **The very first submission after go-live triggers a confirmation email to
 `contact@westscholars.com.au` that must be clicked once before any form email
-arrives.**
+arrives.** That activation has been done, and the endpoint is live: a POST
+carrying a `Referer` from this site answers `302` to the `_next` URL. A POST
+with no referer at all gets FormSubmit's "open this page through a web server"
+page instead, so testing with bare `curl` looks like a failure when it is not.
+Send a referer header when you test.
+
+**A filled `_honey` makes FormSubmit drop the submission and answer `200`
+instead of the `302`.** The parent still reaches the thank-you page, so the
+enquiry looks sent and simply never arrives. That is why `.hp` is `display:
+none` and not an offscreen shift: an input parked at `left:-9999px` is a real,
+focusable field that browser autofill or a password manager can fill. Keep it
+`display: none`. A `display: none` input is still submitted, which is all the
+honeypot needs.
+
+**`_next` points at the extensionless URL (`/guide`, `/thanks`).** Cloudflare
+Pages serves the canonical path without `.html` and `308`s the `.html` spelling
+to it, so the old value cost a redirect hop on the way back from a cross origin
+POST. Firefox and Safari enforce `form-action` across redirects, Chrome does
+not, so the shorter chain is the safer one.
 
 ## Verifying a change
 
@@ -232,6 +250,13 @@ files, images with no alt text, form inputs with no label, forms missing
 `_next` or a honeypot, broken HTML nesting, and any design token pair below its
 contrast target. Contrast is resolved from the `:root` tokens in the stylesheet,
 so the check tracks the CSS instead of drifting from it.
+
+**`_headers` rules match the path the edge actually serves, not the file
+name.** The noindex rules for the two confirmation pages need `/guide` and
+`/thanks` as well as the `.html` spellings. A `308` does not carry a header
+onto the page the crawler finally reads, so keying the rule only to
+`/guide.html` left the live `/guide` with no `X-Robots-Tag` at all. The
+`noindex` meta tag in the markup was the only thing de-indexing it.
 
 `robots.txt` stays permissive on purpose. A `Disallow` rule stops a crawler
 reading the page at all, including any `noindex` meta tag on it, so the two
@@ -256,6 +281,21 @@ deploys. `_headers` is applied at the edge with no build involved.
 
 ## Still open
 
+- [ ] **`www.westscholars.com.au` answers `525` (SSL handshake failed) on every
+      request, while the apex serves fine.** Both names resolve to the same
+      Cloudflare IPs, so the www hostname is proxied but not bound to the Pages
+      project. Anyone who types or follows a www link gets a browser error page
+      instead of the site, forms and guide included. The fix is in the
+      Cloudflare dashboard, not in this repo: add `www` as a custom domain on
+      the Pages project, or give it a redirect rule to the apex
+- [ ] **Cloudflare Email Address Obfuscation (Scrape Shield) is on**, so every
+      `mailto:` is rewritten at the edge into `/cdn-cgi/l/email-protection#...`
+      and a decoder script is injected. The address renders as
+      "[email protected]" until that script runs. It contradicts the no
+      JavaScript rule the CSP comment states, and it makes the "Email us" exit
+      depend on JS. It leaves the FormSubmit `action` attributes alone today,
+      which is the only reason the forms still work. Turn it off in Scrape
+      Shield unless there is a reason to keep it
 - [ ] Feedback survey link, once the survey exists. The button is currently a
       non-clickable `.btn-disabled` span, deliberately, rather than a dead link
 - [ ] The three review-prompt templates on the current clients page are

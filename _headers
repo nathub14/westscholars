@@ -26,8 +26,17 @@
   Cache-Control: public, max-age=86400
 
 
+# Cloudflare Pages serves these without the .html extension and 308s the
+# .html form to it, so both spellings need the rule. A redirect does not
+# carry the header to the page the crawler finally reads.
 /thanks.html
   X-Robots-Tag: noindex, follow
 
+/thanks
+  X-Robots-Tag: noindex, follow
+
 /guide.html
+  X-Robots-Tag: noindex, follow
+
+/guide
   X-Robots-Tag: noindex, follow
