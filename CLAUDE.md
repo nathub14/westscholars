@@ -202,8 +202,6 @@ deploys. `_headers` is applied at the edge with no build involved.
 
 ## Still open
 
-- [ ] Google Business review link (`current-clients/index.html`, Reviews
-      section) is the only remaining red "Add link" tag
 - [ ] Feedback survey link, once the survey exists. The button is currently a
       non-clickable `.btn-disabled` span, deliberately, rather than a dead link
 - [ ] The three review-prompt templates on the current clients page are
