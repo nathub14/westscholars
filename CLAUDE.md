@@ -76,6 +76,15 @@ tokens.
   move the strip, make sure it is inside a section with a known ground, not a
   bare `<div>`. That exact mistake made the Trustpilot and Facebook links
   invisible on the old site.
+- **A white card inside `.section-navy` must set its own text colour.**
+  `.section-navy` sets `h2`, `h3`, `h4` and `.lead` to the inverse ink for the
+  navy ground, and those rules tie on specificity with a component's own, so a
+  component that brings its own light `--surface` inherits white text on white.
+  That is what broke the guarantee block on the homepage. The fix is to pin
+  `color` on the component's own selectors (see `.guarantee h2` and
+  `.guarantee .lead` in section 15), not to move the section, because moving it
+  breaks the cream and navy alternation. `check.py` cannot catch this: it
+  resolves contrast from the `:root` tokens and never sees the cascade.
 - **Never write CSS hex escapes (`\\2713`) through a Python script.** Python
   will eat them as octal escapes and leave NUL bytes in the file. The stylesheet
   declares `@charset "UTF-8"` on line 1 and uses literal `✓` and `×` characters

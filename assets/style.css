@@ -921,8 +921,14 @@ section { padding-block: var(--sec-standard); }
   font-size: 1.75rem;
   margin: 0 auto var(--s-6);
 }
-.guarantee h2 { margin-bottom: var(--s-4); }
-.guarantee .lead { margin-inline: auto; }
+.guarantee h2 {
+  margin-bottom: var(--s-4);
+  color: var(--ink);
+}
+.guarantee .lead {
+  margin-inline: auto;
+  color: var(--ink-soft);
+}
 .guarantee .signoff {
   margin-top: var(--s-6);
   font-family: var(--font-display);
