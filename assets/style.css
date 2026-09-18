@@ -1401,38 +1401,64 @@ section { padding-block: var(--sec-standard); }
 }
 
 /* --------------------------------------------------------------------------
-   25. Hero photo ground
+   25. Photo split
    --------------------------------------------------------------------------
-   The cohort photo behind the hero, under a navy scrim. A modifier on .hero,
-   not a replacement: it re-declares the whole background shorthand, so it must
-   keep the gold radial that gives the hero its warmth and must stay after
-   .hero in this file, because the two tie on specificity and source order is
-   what decides it.
+   The cohort photo beside a short proof statement. A real <img>, not a CSS
+   background: the background version broke on the live site when Cloudflare
+   served a stale stylesheet against fresh markup, and the photo disappeared
+   with nothing left in its place. An <img> renders even with no CSS at all,
+   which is the property that matters for the one piece of proof on the page.
 
-   The scrim is what makes the text legible, so it is not free to lighten.
-   check.py cannot verify this pair: it resolves contrast from the :root tokens
-   and never sees a gradient over a photograph. The numbers were worked out by
-   hand against the brightest part of the image, the pale timber wall behind
-   the group, which is roughly #d8c9a8:
-
-     at 0.93 alpha  composite #131E31  white 15.9:1  brass-300 8.7:1
-     at 0.78 alpha  composite #363D45  white 10.4:1  brass-300 5.8:1
-
-   So every text colour the hero uses clears AA at both ends of the sweep, which
-   matters because the hero collapses to one column at 960px and the copy then
-   spans the lighter end too. Do not take the last stop past 0.78.
+   Lives on cream or white grounds only. On navy it would need every text
+   element inside it pinned, which is the cascade trap documented in CLAUDE.md.
    -------------------------------------------------------------------------- */
 
-.hero-photo {
-  background:
-    linear-gradient(100deg,
-      rgba(8, 21, 41, 0.93) 0%,
-      rgba(8, 21, 41, 0.86) 55%,
-      rgba(8, 21, 41, 0.78) 100%),
-    radial-gradient(1000px 500px at 85% -10%, rgba(208, 147, 44, 0.16), transparent 60%),
-    url("/assets/cohort.jpg") center 30% / cover no-repeat,
-    var(--navy-950);
+.photo-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-12);
+  align-items: center;
 }
+
+.photo-split figure { margin: 0; }
+.photo-split img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+  box-shadow: var(--e3);
+}
+.photo-split figcaption {
+  margin-top: var(--s-3);
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+}
+
+.photo-split .body h2 { margin-bottom: var(--s-4); }
+.photo-split .body p { color: var(--ink-soft); }
+
+.photo-split .points {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-6) 0 0;
+  display: grid;
+  gap: var(--s-3);
+}
+.photo-split .points li {
+  position: relative;
+  padding-left: var(--s-8);
+  color: var(--ink-soft);
+  font-size: var(--fs-sm);
+}
+.photo-split .points li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--success);
+  font-weight: 700;
+}
+.photo-split .points li b { color: var(--navy-800); font-weight: 600; }
 
 /* --------------------------------------------------------------------------
    26. Choice chips
@@ -1714,6 +1740,7 @@ section { padding-block: var(--sec-standard); }
   .review-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .feature-grid { grid-template-columns: 1fr; }
+  .photo-split { grid-template-columns: 1fr; gap: var(--s-8); }
   .chart-card { padding: var(--s-6) var(--s-4); }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
   .guarantee { padding: var(--s-8); }

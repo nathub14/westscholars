@@ -139,17 +139,30 @@ tokens.
   repo root.** The source is a 3MB 4032x3024 original and must never be served.
   The shipped file is the **whole frame at its native 4:3, never cropped**,
   resized to 1440x1080 and saved as a progressive JPEG at quality 78, which
-  lands around 410KB. 1440 is exactly 2x the 720px prose width it displays at.
+  lands around 410KB. 1440 is exactly 2x the 720px column it displays in.
   An earlier version was cropped to a 1.81:1 letterbox to drop the ceiling
-  space above the group and it read as wrong, so leave the framing alone. If
-  the photo is replaced, redo the resize, do not link the original.
-  It is the hero ground on all three content pages, via `.hero-photo` in
-  section 25, not an `<img>` anywhere. That means it is a CSS background and
-  carries no alt text, which is correct because it is atmosphere rather than
-  content, but it also means the scrim over it is the only thing keeping the
-  hero copy legible. Section 25 carries the worked contrast numbers. Read them
-  before touching the gradient. The children in it are minors, so nothing
-  around it names anyone, the same rule the results chart follows.
+  space above the group and it read as wrong, so leave the framing alone.
+  The children in it are minors, so nothing around it names anyone, the same
+  rule the results chart follows.
+- **The cohort photo is an `img` element, not a CSS background.** It was a
+  background behind the hero for one deploy and it vanished on the live site:
+  Cloudflare served a stale stylesheet against fresh markup, the `.hero-photo`
+  rule did not exist yet at the edge, and the hero fell back to its plain
+  gradient with nothing in place of the photo. An image element renders with no
+  CSS at all, which is the property that matters for the only piece of visual
+  proof on the site. Keep it that way.
+- **The edge caches `/assets/*` for four hours, so a CSS change does not reach
+  people on its own.** `_headers` asks for `max-age=3600` but the live response
+  is `max-age=14400`, so that rule is not taking effect as written and is worth
+  a look. Until it is fixed, the stylesheet link on every page carries a
+  version query (`/assets/style.css?v=2`). **Bump that number on every page
+  whenever you change the stylesheet in a way the HTML depends on**, otherwise
+  new markup meets old CSS at the edge and the page renders wrong for hours.
+  `check.py` skips link targets containing `?`, so the version does not trip
+  the missing-file check.
+- **Never write a literal img tag inside an HTML comment.** `check.py` scans
+  raw text, so a commented-out one reads as a real image with no alt attribute
+  and fails the run. Write "image element" in prose instead.
 - **Headless Chrome will not make a window narrower than about 500px on
   Windows.** Screenshots at `--window-size=390` render wider and clip. Measure
   responsive behaviour with an iframe probe instead. The probe must exempt
