@@ -80,11 +80,19 @@ tokens.
   `.section-navy` sets `h2`, `h3`, `h4` and `.lead` to the inverse ink for the
   navy ground, and those rules tie on specificity with a component's own, so a
   component that brings its own light `--surface` inherits white text on white.
-  That is what broke the guarantee block on the homepage. The fix is to pin
-  `color` on the component's own selectors (see `.guarantee h2` and
-  `.guarantee .lead` in section 15), not to move the section, because moving it
-  breaks the cream and navy alternation. `check.py` cannot catch this: it
-  resolves contrast from the `:root` tokens and never sees the cascade.
+  It has bitten twice: the guarantee block (`h2`, `.lead` and `.eyebrow` all
+  went invisible) and the results data table, whose row labels are
+  `<th scope="row">` while the only colour rule targeted `td:first-child`, so
+  they matched nothing and inherited the white. That one was worse than it
+  looked, because the table is the accessible fallback for the chart palette.
+  The fix is to pin `color` on the component's own selectors (see `.guarantee`
+  in section 15 and `.data-table tbody th` in section 27), not to move the
+  section, because moving it breaks the cream and navy alternation. When you
+  add a component to a navy section, check every text element in it, not just
+  the heading. `check.py` cannot catch this: it resolves contrast from the
+  `:root` tokens and never sees the cascade. The reliable check is an iframe
+  probe that composites ancestor backgrounds through their alpha and skips
+  elements over a gradient ground.
 - **Never write CSS hex escapes (`\\2713`) through a Python script.** Python
   will eat them as octal escapes and leave NUL bytes in the file. The stylesheet
   declares `@charset "UTF-8"` on line 1 and uses literal `✓` and `×` characters

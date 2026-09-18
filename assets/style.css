@@ -921,6 +921,7 @@ section { padding-block: var(--sec-standard); }
   font-size: 1.75rem;
   margin: 0 auto var(--s-6);
 }
+.guarantee .eyebrow { color: var(--accent-text); }
 .guarantee h2 {
   margin-bottom: var(--s-4);
   color: var(--ink);
@@ -1495,6 +1496,7 @@ section { padding-block: var(--sec-standard); }
   text-transform: uppercase;
 }
 .data-table tbody td { color: var(--ink-soft); }
+.data-table tbody th,
 .data-table tbody td:first-child { color: var(--navy-800); font-weight: 600; }
 .data-table caption {
   caption-side: bottom;
