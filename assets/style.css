@@ -1400,6 +1400,92 @@ section { padding-block: var(--sec-standard); }
   margin: 0 auto var(--s-8);
 }
 
+/* --------------------------------------------------------------------------
+   25. Photo figure
+   --------------------------------------------------------------------------
+   A real photograph, captioned. The caption colour is pinned on both grounds
+   rather than inherited, because .section-navy recolours descendants and a
+   figure dropped into a navy section would otherwise read as white on white
+   the moment anyone gives it a light surface.
+   -------------------------------------------------------------------------- */
+
+.photo-figure {
+  margin: 0;
+  max-width: var(--w-prose);
+  margin-inline: auto;
+}
+.photo-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--e2);
+}
+.photo-figure figcaption {
+  margin-top: var(--s-4);
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+.section-navy .photo-figure figcaption { color: var(--ink-on-navy); }
+
+/* --------------------------------------------------------------------------
+   26. Choice chips
+   --------------------------------------------------------------------------
+   A checkbox group styled as pills, for a question that needs a few concrete
+   starting points without becoming a closed list. It always sits beside a free
+   text field, never instead of one. Deliberately outside .field, because
+   .field input stretches a control to full width and 48px tall, which is right
+   for a text box and wrong for a checkbox.
+   -------------------------------------------------------------------------- */
+
+.choice-set { border: 0; padding: 0; margin: 0; display: grid; gap: var(--s-3); }
+.choice-set > legend {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--navy-800);
+  padding: 0;
+}
+.choice-set .hint { font-size: var(--fs-xs); color: var(--ink-soft); }
+
+.choice-row { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: var(--warm-50);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-full);
+  padding: var(--s-2) var(--s-4);
+  min-height: 44px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.choice:hover { border-color: var(--warm-400); }
+.choice input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex: none;
+  accent-color: var(--brass-500);
+  cursor: pointer;
+}
+.choice:focus-within {
+  outline: 3px solid rgba(208, 147, 44, 0.25);
+  outline-offset: 0;
+  border-color: var(--brass-400);
+}
+.choice:has(input:checked) {
+  background: var(--brass-100);
+  border-color: var(--brass-400);
+  color: var(--navy-800);
+  font-weight: 600;
+}
 
 /* --------------------------------------------------------------------------
    27. Results chart

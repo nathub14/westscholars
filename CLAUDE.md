@@ -29,18 +29,27 @@ guide, which captures an email. Never remove the second exit.
 
 `/current-clients/` has a different job: **retention and referral.**
 
+`/refer/` has a third job: **gauging demand.** Visitors arrive from a personal
+referral, so it does not sell a term and does not quote a price. It captures
+interest across a wider range of programs than the ASET track, and everything
+outside that track is framed as something we can build, never as a course that
+already exists. Fees, days, location and start dates stay off it on purpose.
+It keeps the same two exits as the homepage: the interest form and the guide.
+
 ## Files
 
 | Path | Purpose |
 | --- | --- |
 | `index.html` | Homepage |
 | `current-clients/index.html` | Page for existing families. Public and linked, not secret |
+| `refer/index.html` | Referral landing page. Reached by word of mouth, not linked from the nav |
 | `thanks.html` | Where the enquiry forms redirect after submitting |
 | `guide.html` | Where the guide form redirects, holds the download |
 | `404.html` | Not found page (Cloudflare Pages picks this up automatically) |
 | `assets/style.css` | The entire design system and every component |
 | `assets/logo.png` | Logo |
 | `assets/og-image.png` | 1200x630 social share card |
+| `assets/cohort.jpg` | Cohort photo, on all three content pages. Derived, see below |
 | `Perth-high-schools-guide.pdf` | The lead magnet |
 | `robots.txt`, `sitemap.xml` | Search engine directives |
 | `_headers` | Cloudflare Pages security and cache headers |
@@ -126,6 +135,13 @@ tokens.
 - **Students on the chart are anonymised (Student 1 to 4).** They are named
   minors, and the chart publishes one child's declining result. Never put real
   first names on a public page.
+- **`assets/cohort.jpg` is generated from `group photo.png` in the repo root.**
+  The source is a 21MB 4032x3024 original and must never be served. The shipped
+  file is cropped to drop the dead ceiling space above the group, resized to
+  1600px wide and saved as a progressive JPEG at quality 78, which lands around
+  350KB. If the photo is ever replaced, redo that, do not link the original.
+  The children in it are minors, so the alt text and caption describe the group
+  and never name anyone, the same rule the results chart follows.
 - **Headless Chrome will not make a window narrower than about 500px on
   Windows.** Screenshots at `--window-size=390` render wider and clip. Measure
   responsive behaviour with an iframe probe instead. The probe must exempt
@@ -224,7 +240,11 @@ deploys. `_headers` is applied at the edge with no build involved.
 - [ ] The three review-prompt templates on the current clients page are
       placeholders. Nathan is supplying his own
 - [ ] No testimonials yet. When the first parent reviews arrive they go in the
-      marked slot on `index.html`, directly under the results section
+      marked slot on `index.html`, directly under the results section, and a
+      quote or two belongs on `/refer/` as well. Until then every page proves
+      social proof by linking out to Google, Facebook and Trustpilot through
+      the `.social-proof` strip. No review text is quoted anywhere on the site,
+      because there is none to quote yet
 - [ ] `chart_student_trajectories.png` not supplied. The results section is
       text and stat tiles only for now
 - [ ] Consider moving the guide form to a real email list (MailerLite or
