@@ -135,13 +135,21 @@ tokens.
 - **Students on the chart are anonymised (Student 1 to 4).** They are named
   minors, and the chart publishes one child's declining result. Never put real
   first names on a public page.
-- **`assets/cohort.jpg` is generated from `group photo.png` in the repo root.**
-  The source is a 21MB 4032x3024 original and must never be served. The shipped
-  file is cropped to drop the dead ceiling space above the group, resized to
-  1600px wide and saved as a progressive JPEG at quality 78, which lands around
-  350KB. If the photo is ever replaced, redo that, do not link the original.
-  The children in it are minors, so the alt text and caption describe the group
-  and never name anyone, the same rule the results chart follows.
+- **`assets/cohort.jpg` is generated from `Group Photo Lighting Fix.jpg` in the
+  repo root.** The source is a 3MB 4032x3024 original and must never be served.
+  The shipped file is the **whole frame at its native 4:3, never cropped**,
+  resized to 1440x1080 and saved as a progressive JPEG at quality 78, which
+  lands around 410KB. 1440 is exactly 2x the 720px prose width it displays at.
+  An earlier version was cropped to a 1.81:1 letterbox to drop the ceiling
+  space above the group and it read as wrong, so leave the framing alone. If
+  the photo is replaced, redo the resize, do not link the original.
+  It is the hero ground on all three content pages, via `.hero-photo` in
+  section 25, not an `<img>` anywhere. That means it is a CSS background and
+  carries no alt text, which is correct because it is atmosphere rather than
+  content, but it also means the scrim over it is the only thing keeping the
+  hero copy legible. Section 25 carries the worked contrast numbers. Read them
+  before touching the gradient. The children in it are minors, so nothing
+  around it names anyone, the same rule the results chart follows.
 - **Headless Chrome will not make a window narrower than about 500px on
   Windows.** Screenshots at `--window-size=390` render wider and clip. Measure
   responsive behaviour with an iframe probe instead. The probe must exempt

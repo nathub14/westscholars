@@ -1401,34 +1401,38 @@ section { padding-block: var(--sec-standard); }
 }
 
 /* --------------------------------------------------------------------------
-   25. Photo figure
+   25. Hero photo ground
    --------------------------------------------------------------------------
-   A real photograph, captioned. The caption colour is pinned on both grounds
-   rather than inherited, because .section-navy recolours descendants and a
-   figure dropped into a navy section would otherwise read as white on white
-   the moment anyone gives it a light surface.
+   The cohort photo behind the hero, under a navy scrim. A modifier on .hero,
+   not a replacement: it re-declares the whole background shorthand, so it must
+   keep the gold radial that gives the hero its warmth and must stay after
+   .hero in this file, because the two tie on specificity and source order is
+   what decides it.
+
+   The scrim is what makes the text legible, so it is not free to lighten.
+   check.py cannot verify this pair: it resolves contrast from the :root tokens
+   and never sees a gradient over a photograph. The numbers were worked out by
+   hand against the brightest part of the image, the pale timber wall behind
+   the group, which is roughly #d8c9a8:
+
+     at 0.93 alpha  composite #131E31  white 15.9:1  brass-300 8.7:1
+     at 0.78 alpha  composite #363D45  white 10.4:1  brass-300 5.8:1
+
+   So every text colour the hero uses clears AA at both ends of the sweep, which
+   matters because the hero collapses to one column at 960px and the copy then
+   spans the lighter end too. Do not take the last stop past 0.78.
    -------------------------------------------------------------------------- */
 
-.photo-figure {
-  margin: 0;
-  max-width: var(--w-prose);
-  margin-inline: auto;
+.hero-photo {
+  background:
+    linear-gradient(100deg,
+      rgba(8, 21, 41, 0.93) 0%,
+      rgba(8, 21, 41, 0.86) 55%,
+      rgba(8, 21, 41, 0.78) 100%),
+    radial-gradient(1000px 500px at 85% -10%, rgba(208, 147, 44, 0.16), transparent 60%),
+    url("/assets/cohort.jpg") center 30% / cover no-repeat,
+    var(--navy-950);
 }
-.photo-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--r-lg);
-  border: 1px solid var(--border);
-  box-shadow: var(--e2);
-}
-.photo-figure figcaption {
-  margin-top: var(--s-4);
-  text-align: center;
-  font-size: var(--fs-sm);
-  color: var(--ink-soft);
-}
-.section-navy .photo-figure figcaption { color: var(--ink-on-navy); }
 
 /* --------------------------------------------------------------------------
    26. Choice chips
