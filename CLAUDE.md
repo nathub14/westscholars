@@ -23,7 +23,7 @@ rather than a pitch. Order is deliberate:
  7. Answer "why not a big centre"
  8. Remove risk (one guarantee)
  9. Price, with the reason for the discount
-10. Who teaches it, with Nathan's photo
+10. Who runs it, with Nathan's photo
 11. Show the method in depth (the Zero Gaps system)
 12. A second, lower-commitment exit (the free guide)
 13. Answer objections (FAQ), then ask (contact form)
@@ -43,7 +43,7 @@ say, so it was deleted rather than rewritten. Do not reinstate it: if
 something about the program is not clear, the fix is in one of those two
 sections.
 
-"Who teaches it" and the Zero Gaps system sit below the price on purpose. By
+"Who runs it" and the Zero Gaps system sit below the price on purpose. By
 the time a parent wants to know who is in the room and exactly how the loop
 works, they have already seen the results, the offer and the guarantee, and
 those two sections are what they read while deciding rather than what gets
@@ -81,7 +81,7 @@ we are building, never as a course that already exists.
 | `assets/logo.png` | Logo |
 | `assets/og-image.png` | 1200x630 social share card |
 | `assets/cohort.jpg` | Cohort photo, in the hero on the homepage and on `/current-clients/`. Derived, see below |
-| `assets/nathan.jpg` | Nathan's portrait in "who teaches it". Derived, see below |
+| `assets/nathan.jpg` | Nathan's portrait in "who runs it". Derived, see below |
 | `Perth-high-schools-guide.pdf` | The lead magnet |
 | `robots.txt`, `sitemap.xml` | Search engine directives |
 | `_headers` | Cloudflare Pages security and cache headers |
@@ -214,7 +214,7 @@ tokens.
   new markup meets old CSS at the edge and the page renders wrong for hours.
   `check.py` skips link targets containing `?`, so the version does not trip
   the missing-file check.
-- **`assets/nathan.jpg` is the portrait in "who teaches it", generated from
+- **`assets/nathan.jpg` is the portrait in "who runs it", generated from
   `anothernathanpoto.png` in the repo root**, which is git-ignored and must
   never be served. The supplied file is 730x1042, so the 1200x1500 this spec
   used to ask for was never available: it ships cropped to 4:5 at its native
@@ -266,6 +266,12 @@ purpose. Do not work around it.
   A claim that everything taught is rescheduled and resurfaced is not true of
   the program as it runs, and was removed from the Zero Gaps section for that
   reason. Do not write it back in.
+- **Nathan runs West Scholars, he does not teach every session.** The page
+  said he taught every Workshop and every Clinic himself until pass 6, in the
+  founder section, in a "Who teaches it?" FAQ question and in the FAQPage
+  structured data. All three are gone. The section below the price is a
+  founder block now, headed "Who runs it", and the FAQ carries no staffing
+  question at all. Do not write the teaching claim back in anywhere.
 - **The term is eight weeks.** Every term-length reference says eight.
 - **Two fixed proper nouns**, used verbatim everywhere they appear:
   - **The Sleep Like a Baby Guarantee** wherever the refund is mentioned.
