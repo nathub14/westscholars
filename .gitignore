@@ -5,6 +5,6 @@ Group Photo Lighting Fix.jpg
 # publicly fetchable at westscholars.com.au/<filename>. Internal planning docs,
 # briefs and tooling stay out of the repo for that reason.
 .claude/
-HOMEPAGE-REWRITE-pass1.md
-claude-code-prompt-pass1.md
+HOMEPAGE-REWRITE-pass*.md
+claude-code-prompt-pass*.md
 site-copy-and-design-rewrite.zip

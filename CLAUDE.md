@@ -14,24 +14,35 @@ The homepage has exactly one job: **turn a visitor into a contact.** Most
 traffic is warm, referred by an existing family, so the page leads with proof
 rather than a pitch. Order is deliberate:
 
-1. State plainly what we do, with the headline result beside it
-2. Show the cohort photo straight away, uncaptioned, with the social links
-3. Prove it in numbers (results section, the chart and the table)
-4. Say who teaches it
-5. Show the method in depth (this is the real differentiator)
-6. Show the offer (what you actually get), then how it runs
-7. Where this is headed, for families outside the ASET track
-8. Answer "why not a big centre"
-9. Remove risk (one guarantee)
+ 1. Hero: state plainly what we do, with the cohort photo beside the copy
+ 2. The social links strip, on cream
+ 3. Prove it in numbers (results section, the chart and the table)
+ 4. What we do, the short direct pitch
+ 5. What you get, the full list of what is in the term
+ 6. How it runs, the logistics
+ 7. We are starting new programs, for families outside the ASET track
+ 8. Answer "why not a big centre"
+ 9. Remove risk (one guarantee)
 10. Price, with the reason for the discount
-11. A second, lower-commitment exit (the free guide)
-12. Answer objections (FAQ), then ask (contact form)
+11. Who teaches it, with Nathan's photo
+12. Show the method in depth (the Zero Gaps system)
+13. A second, lower-commitment exit (the free guide)
+14. Answer objections (FAQ), then ask (contact form)
 
 The photo and the chart are two different proofs and are deliberately not
-bundled: the photo says there is a real cohort and has to land before anyone
-scrolls, the chart says the term worked and needs the room to be read. "Where
-this is headed" sits in the first half rather than near the footer because a
-real share of the traffic is after tutoring that is not the ASET.
+bundled: the photo sits in the hero because it says there is a real cohort and
+has to land before anyone scrolls, the chart sits two sections down because it
+says the term worked and needs the room to be read. "We are starting new
+programs" sits directly above the pricing section, not near the footer,
+because the price on that card is the exam track only and a real share of the
+traffic is after something else. Those families have to be caught before they
+meet a price that is not for them.
+
+"Who teaches it" and the Zero Gaps system sit below the price on purpose. By
+the time a parent wants to know who is in the room and exactly how the loop
+works, they have already seen the results, the offer and the guarantee, and
+those two sections are what they read while deciding rather than what gets
+them to keep scrolling.
 
 Every section does exactly one job. If a section cannot be described in one
 sentence starting "this section's only job is to", it does not have a reason to
@@ -160,18 +171,23 @@ tokens.
   repo root.** The source is a 3MB 4032x3024 original and must never be served.
   The shipped file is the **whole frame at its native 4:3, never cropped**,
   resized to 1440x1080 and saved as a progressive JPEG at quality 78, which
-  lands around 410KB. 1440 is exactly 2x the 720px column it displays in.
+  lands around 410KB. 1440 is roughly 2.5x the column it displays in inside
+  the hero, and exactly 2x the 720px column it displays in on
+  `/current-clients/`.
   An earlier version was cropped to a 1.81:1 letterbox to drop the ceiling
   space above the group and it read as wrong, so leave the framing alone.
   The children in it are minors, so nothing around it names anyone, the same
   rule the results chart follows.
-- **The cohort photo sits directly under the hero, on cream, with no
-  caption.** It used to live inside the results section with a caption under
-  it. Both moved for the same reason: it is the first proof a visitor meets and
-  it should not need a scroll or an explanation. `.cohort-photo` caps it at the
-  720px prose width, which is exactly half the 1440px file. If it ever goes
-  back onto navy, it needs its own pinned text colour again, see the cascade
-  note above.
+- **The cohort photo sits inside the hero, beside the copy, with no caption.**
+  It has now moved twice for the same reason: it started inside the results
+  section with a caption under it, then ran on cream directly under the hero,
+  and it is now the right hand half of the hero grid. It is the first proof a
+  visitor meets and it should not need a scroll or an explanation. `.hero-photo`
+  is the rule, and the hero's `1fr 0.9fr` grid collapses to one column at 960px
+  so the copy stays above the photo on a phone. It is on navy there, so it
+  carries no text of its own at all: a caption would need its colour pinned,
+  see the cascade note above. The strip of social links it used to sit above is
+  still there on cream, now on its own.
 - **The cohort photo is an `img` element, not a CSS background.** It was a
   background behind the hero for one deploy and it vanished on the live site:
   Cloudflare served a stale stylesheet against fresh markup, the `.hero-photo`
@@ -183,11 +199,20 @@ tokens.
   people on its own.** `_headers` asks for `max-age=3600` but the live response
   is `max-age=14400`, so that rule is not taking effect as written and is worth
   a look. Until it is fixed, the stylesheet link on every page carries a
-  version query (`/assets/style.css?v=2`). **Bump that number on every page
+  version query (`/assets/style.css?v=7`). **Bump that number on every page
   whenever you change the stylesheet in a way the HTML depends on**, otherwise
   new markup meets old CSS at the edge and the page renders wrong for hours.
   `check.py` skips link targets containing `?`, so the version does not trip
   the missing-file check.
+- **`.photo-slot` is a placeholder for a photo that does not exist yet**, and
+  right now the only one is Nathan's portrait in "who teaches it". It is a
+  dashed frame that prints its own target filename and pixel size, deliberately
+  loud, so it cannot ship unnoticed the way a grey box or a stock image could.
+  Replacing it means dropping `assets/nathan.jpg` in at 1200x1500 and swapping
+  the `div` for an image element inside the same `figure`, keeping the
+  `.photo-split.portrait` modifier that caps the column at 380px. Delete the
+  `.photo-slot` rule once no slot on the site is empty. Never fill a slot with
+  a stock photo.
 - **Never write a literal img tag inside an HTML comment.** `check.py` scans
   raw text, so a commented-out one reads as a real image with no alt attribute
   and fails the run. Write "image element" in prose instead.
@@ -325,6 +350,9 @@ carry `noindex`.
       depend on JS. It leaves the FormSubmit `action` attributes alone today,
       which is the only reason the forms still work. Turn it off in Scrape
       Shield unless there is a reason to keep it
+- [ ] **Nathan's portrait for "who teaches it" is not supplied.** The slot is
+      a `.photo-slot` placeholder. Needs `assets/nathan.jpg`, portrait 4:5, at
+      least 1200x1500, processed the same way as the cohort photo
 - [ ] Feedback survey link, once the survey exists. The button is currently a
       non-clickable `.btn-disabled` span, deliberately, rather than a dead link
 - [ ] The three review-prompt templates on the current clients page are

@@ -537,85 +537,19 @@ section { padding-block: var(--sec-standard); }
   flex: none;
 }
 
-/* The hero proof panel: the most important block on the site. The gold top
-   rule is the same one the result tiles carry, so the panel reads as the first
-   instance of the proof language rather than as unrelated furniture. */
-.proof-panel {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-top: 3px solid var(--brass-400);
+/* The cohort photo, beside the hero copy rather than under it. An image
+   element and never a background: when the edge served a stale stylesheet
+   against fresh markup, the background version left nothing at all in its
+   place, and this is the only visual proof on the page.
+   The shipped file is 1440px wide, which is roughly 2.5x the column it sits
+   in here, so it stays sharp on a retina screen. */
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
   border-radius: var(--r-lg);
-  padding: var(--s-8);
-}
-
-.proof-stat { font-family: var(--font-display); }
-.proof-stat .num {
-  display: block;
-  font-size: var(--fs-stat);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  color: var(--brass-300);
-  font-variant-numeric: tabular-nums;
-}
-.proof-stat .cap {
-  display: block;
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  color: var(--ink-on-navy);
-  margin-top: var(--s-3);
-  max-width: 30ch;
-}
-
-.proof-panel hr {
-  border: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  margin-block: var(--s-6);
-}
-
-/* The three supporting figures, stacked rather than sat in a row. Stacking is
-   what gives the panel enough height to balance the headline column beside it,
-   and it lets each figure carry a full sentence instead of a cramped label. */
-.proof-list { display: grid; gap: var(--s-4); }
-.proof-list > div {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr;
-  gap: var(--s-4);
-  align-items: center;
-}
-.proof-list .k {
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  font-weight: 700;
-  color: var(--brass-300);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.proof-list .v { font-size: var(--fs-sm); color: var(--ink-on-navy); }
-
-.proof-foot {
-  margin-top: var(--s-6);
-  font-size: var(--fs-xs);
-  color: var(--navy-300);
-}
-
-.proof-row { display: flex; gap: var(--s-6); }
-.proof-row > div { flex: 1; }
-.proof-row .k {
-  font-family: var(--font-display);
-  font-size: var(--fs-stat-sm);
-  font-weight: 700;
-  color: var(--ink-inverse);
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.proof-row .v {
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--navy-200);
-  margin-top: var(--s-2);
-  font-weight: 600;
+  box-shadow: var(--e3);
+  border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 /* --------------------------------------------------------------------------
@@ -1506,6 +1440,11 @@ section { padding-block: var(--sec-standard); }
   color: var(--ink-soft);
 }
 
+/* A portrait photo in the split, rather than the landscape cohort shot. At the
+   full column width a 4:5 crop towers over the short text beside it, so it is
+   capped and centred in its own half. */
+.photo-split.portrait figure { max-width: 380px; margin-inline: auto; }
+
 .photo-split .body h2 { margin-bottom: var(--s-4); }
 .photo-split .body p { color: var(--ink-soft); }
 
@@ -1532,48 +1471,40 @@ section { padding-block: var(--sec-standard); }
 }
 .photo-split .points li b { color: var(--navy-800); font-weight: 600; }
 
-/* The same photo directly under the hero, carrying no caption and no frame of
-   its own. It is capped at the prose width because the shipped file is 1440px
-   wide, which is exactly 2x that column, and a wider display would soften it.
-   It sits on cream with the social links, so nothing here has to fight a navy
-   ground the way the old captioned version in the results section did. */
-.cohort-photo {
-  max-width: var(--w-prose);
-  margin-inline: auto;
-  padding-top: var(--s-10);
-}
-.cohort-photo img {
-  display: block;
-  width: 100%;
-  height: auto;
+/* A placeholder for a photo that has not been supplied yet. Deliberately
+   loud: a dashed frame with its own filename and pixel size written inside it,
+   so it cannot ship unnoticed the way a grey box or a stock image could.
+   Delete this rule once every slot on the site has a real photo in it. */
+.photo-slot {
+  aspect-ratio: 4 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  text-align: center;
+  padding: var(--s-6);
+  border: 2px dashed var(--navy-300);
   border-radius: var(--r-lg);
-  box-shadow: var(--e3);
-}
-
-/* The credentials under "who teaches it". A plain ticked list rather than the
-   feature grid: four short lines that a parent reads top to bottom, so one
-   column at any width. */
-.cred-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: var(--s-3);
-  max-width: 44ch;
-  margin-inline: auto;
-}
-.cred-list li {
-  position: relative;
-  padding-left: var(--s-8);
+  background: var(--ground);
   color: var(--ink-soft);
 }
-.cred-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--success);
+.photo-slot .ps-mark {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
   font-weight: 700;
+  color: var(--navy-300);
+}
+.photo-slot .ps-text {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--navy-800);
+}
+.photo-slot .ps-size {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
 /* --------------------------------------------------------------------------
@@ -1892,7 +1823,6 @@ section { padding-block: var(--sec-standard); }
 
 @media (max-width: 480px) {
   .skills-block { grid-template-columns: 1fr; }
-  .proof-row { flex-direction: column; gap: var(--s-4); }
   .btn-row > .btn { width: 100%; }
 }
 

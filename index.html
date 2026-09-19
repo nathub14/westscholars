@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=6">
+<link rel="stylesheet" href="/assets/style.css?v=7">
 </head>
 <body>
 
@@ -56,7 +56,7 @@
       <a href="#results">Results</a>
       <a href="#system">How it works</a>
       <a href="#pricing">Term 4</a>
-      <a href="#next">What is next</a>
+      <a href="#next">New programs</a>
       <a href="#faq">FAQ</a>
       <a class="nav-cta" href="#contact">Enrol for Term 4</a>
     </nav>
@@ -67,8 +67,14 @@
 
 <!-- ========================= HERO =========================
      Says what the business does, then what the parent gets and what the next
-     step is. It deliberately does not restate what a scholarship is worth:
-     that belongs in the FAQ, where a parent who does not know is asking. -->
+     step is. The cohort photo runs beside the copy rather than under it,
+     because it is the first proof a visitor meets and it should land before
+     anyone has scrolled. It is an image element and never a CSS background: a
+     background disappears entirely when the edge serves a stale stylesheet,
+     and this is the only piece of visual proof on the page.
+     The stat panel that used to sit here is gone. Every number on it already
+     lives in the results section below, and the photo now does the hero's
+     proof job instead. -->
 <section class="hero">
   <div class="wrap">
     <div>
@@ -83,48 +89,22 @@
       </div>
     </div>
 
-    <aside class="proof-panel" aria-label="First cohort results">
-      <span class="eyebrow">First cohort, 2026</span>
-      <p class="proof-stat">
-        <span class="num">30%</span>
-        <span class="cap">improvement from baseline to final mock, across an eight week term.</span>
-      </p>
-      <hr>
-      <div class="proof-list">
-        <div>
-          <div class="k">3 of 4</div>
-          <div class="v">students improved their overall score in their first term</div>
-        </div>
-        <div>
-          <div class="k">100%</div>
-          <div class="v">of students improved their reading score</div>
-        </div>
-        <div>
-          <div class="k">8</div>
-          <div class="v">weeks from the baseline mock to the final mock</div>
-        </div>
-      </div>
-      <p class="proof-foot">Early results from our first cohort of four students. The full figures are below.</p>
-    </aside>
+    <div class="hero-photo">
+      <img src="/assets/cohort.jpg" width="1440" height="1080" decoding="async"
+           alt="The first West Scholars cohort and their parents together at the end of term.">
+    </div>
   </div>
 </section>
 
 <!-- ========================= PROOF STRIP =========================
-     The cohort photo runs here, straight under the hero, so the first proof a
-     visitor meets is a room of real families rather than a number. No caption:
-     the photo is the claim, and a line of text under it only described what is
-     already visible. It is an image element and never a CSS background, so it
-     still renders when the edge is serving a stale stylesheet.
-     The links below it sit inside .section-cream, not a bare div. They restyle
-     themselves by ground, so a strip with no known background renders white on
-     white. The marks are inline SVG, because the CSP allows no third party
-     images and there is no JavaScript on this site to fetch them with. -->
+     The cohort photo used to run here and now sits inside the hero, so this is
+     the links on their own. They stay inside .section-cream, not a bare div:
+     they restyle themselves by ground, so a strip with no known background
+     renders white on white. The marks are inline SVG, because the CSP allows
+     no third party images and there is no JavaScript on this site to fetch
+     them with. -->
 <div class="section-cream">
   <div class="wrap">
-    <div class="cohort-photo">
-      <img src="/assets/cohort.jpg" width="1440" height="1080" decoding="async"
-           alt="The first West Scholars cohort and their parents together at the end of term.">
-    </div>
     <div class="social-proof">
       <a href="https://www.facebook.com/people/West-Scholars-Education/61594048093920/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#1877f2" d="M24 12.073C24 5.446 18.627 0 12 0S0 5.446 0 12.073C0 18.063 4.388 23.027 10.125 23.927v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.063 24 12.073z"/></svg>
@@ -143,10 +123,12 @@
 </div>
 
 <!-- ========================= RESULTS =========================
-     Numbers only. The cohort photo used to sit in here and now runs directly
-     under the hero, because it is doing a different job: the chart shows the
-     improvement and the photo shows there is a real cohort, and the second one
-     has to land before a visitor has scrolled anywhere.
+     Numbers only. The cohort photo is up in the hero, because it is doing a
+     different job: the chart shows the improvement and the photo shows there
+     is a real cohort, and the second one has to land before a visitor has
+     scrolled anywhere. The chart carries .mt-16 rather than sitting on the
+     stat row's own margin, because the tiles and the graph are two separate
+     readings and ran together without it.
      Note: check.py scans raw text, so never write a literal image tag inside
      a comment here. It reads as a real one with no alt and fails the run. -->
 <section class="section-navy sec-anchor sec-major" id="results">
@@ -173,7 +155,7 @@
       </div>
     </div>
 
-    <div class="chart-card">
+    <div class="chart-card mt-16">
       <p class="chart-title">Total mock score, every student, all three mocks</p>
       <p class="chart-sub">Every student dipped at Mock 2 and three of the four jumped at Mock 3. Getting a student through that middle dip is most of the work.</p>
       <svg viewBox="0 0 760 318" class="chart" role="img" aria-labelledby="chartTitle chartDesc" preserveAspectRatio="xMidYMid meet">
@@ -265,78 +247,29 @@
   words outrank every stat on this page.
 -->
 
-<!-- ========================= WHO TEACHES IT =========================
-     Moved across from the old refer page, in team voice. Bullets rather than a
-     paragraph, because a parent scanning for the credentials should not have to
-     read a sentence to find them. The last bullet is the standard being claimed
-     rather than a fact about Nathan, so it stays as more tutors join. -->
+<!-- ========================= WHAT WE DO =========================
+     The short, direct pitch. Its only job is to say plainly what the program
+     is, so a parent who reads nothing else knows what they would be buying.
+     The full list of what is included is the next section down. -->
 <section class="section-cream sec-tight">
   <div class="wrap wrap-prose">
-    <div class="section-head mb-8">
-      <span class="eyebrow">Who teaches it</span>
-      <h2>Every tutor here has sat these exams and won them.</h2>
-    </div>
-    <p class="lead center center-x">West Scholars is led by Nathan Hubbard, who teaches every Workshop and every Clinic.</p>
-    <ul class="cred-list mt-8">
-      <li>Academic scholarship to Hale</li>
-      <li>98 ATAR</li>
-      <li>Studies Finance and Computer Science at UWA</li>
-      <li>Every tutor here has personally sat and won these exams before teaching them</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ========================= THE SYSTEM ========================= -->
-<section class="section-white sec-major" id="system">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">How it works</span>
-      <h2>The Zero Gaps Scientific Scholar System</h2>
-      <p>We use a four step system that means nothing your child gets wrong stays wrong. It runs every week of the term.</p>
-    </div>
-
-    <div class="steps wrap-prose">
-      <div class="step">
-        <div class="num">1</div>
-        <div>
-          <h4>We teach the skill in the Workshop</h4>
-          <p>The Workshop is two hours with four students in the room, in person. We teach the new skill and demonstrate it, then the group works through it with help before each student does it on their own.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <div>
-          <h4>Your child practises it that week</h4>
-          <p>Through the week your child works through a mix of paper and platform homework, built from the questions they actually got wrong. Every question on the platform carries a video solution, so a student stuck at eight on a Tuesday night is not stuck for long.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
-        <div>
-          <h4>We go through it one-on-one in the Clinic</h4>
-          <p>The Clinic is 45 minutes face to face, every week of the term. We go through what your child got wrong, teach it again, and have them redo it while they can still remember what they were thinking the first time.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="num">4</div>
-        <div>
-          <h4>We patch the holes that are left</h4>
-          <p>A diagnostic finds the narrow slice of the syllabus costing your child the most marks, and the next week's homework aims at that and nothing else.</p>
-        </div>
-      </div>
-    </div>
-
-    <p class="fine-print wrap-prose center mt-8">The diagnostic and the homework loop run on spaced repetition and deliberate practice, two of the best evidenced findings in learning research. Ask us and we will walk you through how we apply both.</p>
-  </div>
-</section>
-
-<!-- ========================= WHAT YOU GET ========================= -->
-<section class="section-cream sec-major" id="program">
-  <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">What we do</span>
       <h2>We prepare them for the real thing.</h2>
-      <p>Generic tutoring teaches maths in general. We teach the paper your child will actually sit, down to its question types and time limits, along with the test craft most prep leaves out.</p>
+      <p>Generic tutoring teaches maths in general. We teach the paper your child will actually sit, down to its question types and its time limits, plus the test craft most prep leaves out. Eight weeks. A two hour Workshop of four students every week, and a 45 minute one-on-one Clinic every week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= WHAT YOU GET =========================
+     The full list of what is in the term, grouped so a parent can scan it.
+     The short pitch is the section above; this one only enumerates. -->
+<section class="section-white sec-major" id="program">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What you get</span>
+      <h2>Everything included in the term.</h2>
+      <p>Eight weeks, four groups of things. Nothing here is an add-on and nothing here costs extra.</p>
     </div>
 
     <div class="feature-clusters wrap-prose">
@@ -354,7 +287,7 @@
         <h3>Practice between classes</h3>
         <ul class="feature-grid">
           <li><b>Custom homework</b>Built from the mistakes your child made that week.</li>
-          <li><b>Thousands of practice questions</b>Every one carries a video solution.</li>
+          <li><b>Thousands of practice questions</b>Every one carries a written explanation, and many carry a video walkthrough.</li>
           <li><b>Spaced repetition on vocabulary</b>And the other content that has to be known by exam day.</li>
           <li><b>Reading recommendations</b>The books that move a Year 5 reading and writing score.</li>
         </ul>
@@ -387,7 +320,7 @@
      Everything else is spelled out to the hour on purpose. This runs straight
      into the big centre comparison, and a parent should reach that with no open
      question about what they are actually buying. -->
-<section class="section-white sec-major">
+<section class="section-cream sec-major">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">How it runs</span>
@@ -416,18 +349,19 @@
   </div>
 </section>
 
-<!-- ========================= WHERE THIS IS HEADED =========================
-     Merged in from the old refer page. It sits this high up because a real
-     share of the traffic is after tutoring that is not the ASET, and burying
-     it near the footer loses those families. Framed as areas being built out,
-     never as courses already sitting on a shelf: only the exam track has run a
-     term and carries numbers, and the copy has to keep that line visible. -->
-<section class="section-cream sec-major" id="next">
+<!-- ========================= NEW PROGRAMS =========================
+     Sits above the pricing section on purpose. The price below it is the exam
+     track only, and a real share of the traffic is after something else, so
+     those families have to be caught before they meet a price that is not for
+     them. Framed as areas starting, never as courses already sitting on a
+     shelf: only the exam track has run a term and carries numbers, and the
+     copy has to keep that line visible. -->
+<section class="section-white sec-major" id="next">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Where this is headed</span>
-      <h2>Where this system goes after the exam track</h2>
-      <p>We are starting a number of new programs. The exam track is the one running today, and these are the areas opening next.</p>
+      <span class="eyebrow">New programs</span>
+      <h2>We are starting new programs.</h2>
+      <p>The Year 4 and Year 5 scholarship entry track is running now. These are the ones starting next.</p>
     </div>
 
     <div class="grid grid-3">
@@ -447,10 +381,13 @@
 
       <div class="skills-group">
         <div class="meta">Ahead of the curriculum</div>
-        <h3>Strong students who are not sitting an exam</h3>
+        <h3>Strong students who are not sitting an entry exam</h3>
         <p class="fine-print">The same diagnostic and the same patching loop, aimed at school work instead of a paper, for a child capable of more than the year level in front of them.</p>
         <div class="tag-row mt-4">
-          <span class="tag">NAPLAN prep</span>
+          <span class="tag">NAPLAN Year 3</span>
+          <span class="tag">NAPLAN Year 5</span>
+          <span class="tag">NAPLAN Year 7</span>
+          <span class="tag">NAPLAN Year 9</span>
           <span class="tag">A year or more ahead</span>
           <span class="tag">Primary maths and English</span>
           <span class="tag">Study skills</span>
@@ -475,7 +412,7 @@
 </section>
 
 <!-- ========================= COMPARISON ========================= -->
-<section class="section-white sec-major">
+<section class="section-cream sec-major">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Why not just go to a big centre</span>
@@ -555,7 +492,7 @@
           <li><b>Weekly Clinic</b>, 45 minutes, one-on-one</li>
           <li><b>Writing marked every week</b>, with specific feedback</li>
           <li><b>Custom homework</b>, built from your child's own mistakes</li>
-          <li><b>Full platform access</b>, with a video solution on every question</li>
+          <li><b>Full platform access</b>, with a written explanation on every question</li>
           <li><b>Timed mocks</b> under real exam conditions</li>
           <li><b>School and exam strategy</b> for your family's shortlist</li>
           <li><b>Direct updates from your tutor</b>, by text or call</li>
@@ -579,6 +516,89 @@
     </div>
     <p class="lead center-x center">I am still building this. Honest feedback and a few real testimonials are worth more to me at this stage than charging full price.</p>
     <p class="notice pending mt-8">The price rises over time. It has already risen since last term, and existing families keep the rate they started on.</p>
+  </div>
+</section>
+
+<!-- ========================= WHO TEACHES IT =========================
+     Ownership, not a team claim. Nathan runs this himself and these are his
+     credentials, so nothing here implies other tutors. If that changes, it
+     changes here, in the FAQ answer and in the FAQPage structured data at the
+     foot of this file, which all said the same thing and have to keep saying
+     the same thing.
+     PHOTO SLOT: the .photo-slot block below is a placeholder frame, not an
+     image. When Nathan's portrait arrives it becomes assets/nathan.jpg at
+     1200x1500 (portrait 4:5), and the placeholder is replaced by an image
+     element inside the same figure. -->
+<section class="section-white sec-major">
+  <div class="wrap">
+    <div class="photo-split portrait">
+      <figure>
+        <div class="photo-slot" role="img" aria-label="A photo of Nathan Hubbard will go here.">
+          <span class="ps-mark">Photo</span>
+          <span class="ps-text">Photo of Nathan goes here</span>
+          <span class="ps-size">assets/nathan.jpg &middot; 1200 &times; 1500</span>
+        </div>
+      </figure>
+      <div class="body">
+        <span class="eyebrow">Who teaches it</span>
+        <h2>Led by Nathan Hubbard.</h2>
+        <p>Nathan teaches every Workshop and every Clinic himself. He sat these exams, and he has been on the other side of them.</p>
+        <ul class="points">
+          <li>Academic scholarship to Hale</li>
+          <li>98 ATAR</li>
+          <li>Studies Finance and Computer Science at UWA</li>
+          <li>Built the practice platform your child uses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= THE SYSTEM =========================
+     Sits low on the page on purpose. It is the mechanism in full, for the
+     parent who wants to know how the thing works before they commit, and by
+     the time someone reaches it they have already seen the results, the price
+     and the guarantee. -->
+<section class="section-cream sec-major" id="system">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>The Zero Gaps Scientific Scholar System</h2>
+      <p>Nothing your child gets wrong stays wrong. It runs as a weekly loop: we teach it, they practise it, we fix what broke one-on-one, then the next week's work aims at whatever is still weak. That loop runs every week of the eight week term.</p>
+    </div>
+
+    <div class="steps wrap-prose">
+      <div class="step">
+        <div class="num">1</div>
+        <div>
+          <h4>We teach the skill in the Workshop</h4>
+          <p>Two hours, four students, in person. We teach one new skill, show it worked through, then the group tries it with help before each student does it on their own. Four in the room means we see every student's working during the session, not just the ones who put a hand up.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div>
+          <h4>Your child practises it that week</h4>
+          <p>Homework is built from the questions they actually got wrong, part of it on paper and part of it on our practice platform. Every question carries a written explanation, and many carry a video walkthrough as well, so a student stuck at eight on a Tuesday night has a way forward. Older material resurfaces on a spacing schedule, so what they learned in week one is still there in week eight.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div>
+          <h4>We go through it one-on-one in the Clinic</h4>
+          <p>45 minutes face to face, every week of the term. We go through what your child got wrong, teach it again a different way, then have them redo it while they can still remember what they were thinking the first time. A wrong answer is worth more than a right one here, because it says exactly where the gap is.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div>
+          <h4>We patch the holes that are left</h4>
+          <p>Every wrong answer is tagged to the skill behind it, so by the end of a week we can see which narrow slice of the syllabus is costing your child the most marks. The next week's homework aims at that slice and nothing else, and the skill keeps being retested until it stops coming back.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="fine-print wrap-prose center mt-8">The spacing schedule and the patching loop are spaced repetition and deliberate practice, two of the best evidenced findings in learning research. Ask us and we will walk you through how we apply both.</p>
   </div>
 </section>
 
@@ -663,7 +683,7 @@
       </details>
       <details class="faq-item">
         <summary>Who teaches it?<span class="chev"></span></summary>
-        <div class="a">Nathan Hubbard, Senior Tutor, teaches every Workshop and every Clinic. He sat these exams, won an academic scholarship to Hale, finished with a 98 ATAR and studies Finance and Computer Science at UWA. Anyone who teaches here will have sat and won these exams themselves.</div>
+        <div class="a">Nathan Hubbard. He teaches every Workshop and every Clinic himself. He sat these exams, won an academic scholarship to Hale, finished with a 98 ATAR and studies Finance and Computer Science at UWA, and he built the practice platform your child uses.</div>
       </details>
       <details class="faq-item">
         <summary>What makes it science-based?<span class="chev"></span></summary>
@@ -851,7 +871,7 @@
     {
       "@type": "Question",
       "name": "Who teaches it?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Nathan Hubbard, Senior Tutor, teaches every Workshop and every Clinic. He sat these exams, won an academic scholarship to Hale, finished with a 98 ATAR and studies Finance and Computer Science at UWA. Anyone who teaches here will have sat and won these exams themselves." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Nathan Hubbard teaches every Workshop and every Clinic himself. He sat these exams, won an academic scholarship to Hale, finished with a 98 ATAR and studies Finance and Computer Science at UWA, and he built the practice platform your child uses." }
     },
     {
       "@type": "Question",
