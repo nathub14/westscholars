@@ -15,26 +15,34 @@ traffic is warm, referred by an existing family, so the page leads with proof
 rather than a pitch. Order is deliberate:
 
 1. State plainly what we do, with the headline result beside it
-2. Prove it (results section)
-3. Show the offer (what you actually get)
+2. Prove it (results section, with the cohort photo inside it)
+3. Say who teaches it
 4. Show the method in depth (this is the real differentiator)
-5. Remove risk (one guarantee)
-6. Price, with the reason for the discount
-7. Scarcity
-8. A second, lower-commitment exit (the free guide)
-9. Answer objections (FAQ), then ask (contact form)
+5. Show the offer (what you actually get), then how it runs
+6. Answer "why not a big centre"
+7. Remove risk (one guarantee)
+8. Price, with the reason for the discount
+9. Where this is headed, for families outside the ASET track
+10. A second, lower-commitment exit (the free guide)
+11. Answer objections (FAQ), then ask (contact form)
+
+Every section does exactly one job. If a section cannot be described in one
+sentence starting "this section's only job is to", it does not have a reason to
+exist yet.
 
 Two exits, not one. High intent goes to the contact form. Low intent goes to the
-guide, which captures an email. Never remove the second exit.
+guide, which captures a name, an email and a phone number. Never remove the
+second exit.
 
 `/current-clients/` has a different job: **retention and referral.**
 
-`/refer/` has a third job: **gauging demand.** Visitors arrive from a personal
-referral, so it does not sell a term and does not quote a price. It captures
-interest across a wider range of programs than the ASET track, and everything
-outside that track is framed as something we can build, never as a course that
-already exists. Fees, days, location and start dates stay off it on purpose.
-It keeps the same two exits as the homepage: the interest form and the guide.
+`/refer/` **no longer exists.** It was a near duplicate of the homepage with
+four sections worth keeping, so those were folded in (who teaches it, how it
+runs, where this is headed, and its richer enquiry form) and the page was
+removed. `_redirects` 301s `/refer` to `/`. Do not recreate it: the demand
+gauging job is now done by the interest checkboxes on the homepage enquiry
+form, and everything outside the ASET track is still framed there as something
+we are building, never as a course that already exists.
 
 ## Files
 
@@ -42,14 +50,14 @@ It keeps the same two exits as the homepage: the interest form and the guide.
 | --- | --- |
 | `index.html` | Homepage |
 | `current-clients/index.html` | Page for existing families. Public and linked, not secret |
-| `refer/index.html` | Referral landing page. Reached by word of mouth, not linked from the nav |
+| `_redirects` | Cloudflare Pages redirects. Currently just `/refer` to `/` |
 | `thanks.html` | Where the enquiry forms redirect after submitting |
 | `guide.html` | Where the guide form redirects, holds the download |
 | `404.html` | Not found page (Cloudflare Pages picks this up automatically) |
 | `assets/style.css` | The entire design system and every component |
 | `assets/logo.png` | Logo |
 | `assets/og-image.png` | 1200x630 social share card |
-| `assets/cohort.jpg` | Cohort photo, on all three content pages. Derived, see below |
+| `assets/cohort.jpg` | Cohort photo, inside the homepage results section and on `/current-clients/`. Derived, see below |
 | `Perth-high-schools-guide.pdf` | The lead magnet |
 | `robots.txt`, `sitemap.xml` | Search engine directives |
 | `_headers` | Cloudflare Pages security and cache headers |
@@ -98,7 +106,10 @@ tokens.
   in section 15 and `.data-table tbody th` in section 27), not to move the
   section, because moving it breaks the cream and navy alternation. When you
   add a component to a navy section, check every text element in it, not just
-  the heading. `check.py` cannot catch this: it resolves contrast from the
+  the heading. Third instance: the cohort photo's `figcaption` inside the
+  results section. `.section-navy` covers `h2`, `h3`, `h4` and `.lead` and
+  reaches no further, so a `figcaption` silently inherits the body ink and
+  goes near invisible on navy. `.results-photo figcaption` pins it. `check.py` cannot catch this: it resolves contrast from the
   `:root` tokens and never sees the cascade. The reliable check is an iframe
   probe that composites ancestor backgrounds through their alpha and skips
   elements over a gradient ground.
@@ -303,7 +314,7 @@ carry `noindex`.
       placeholders. Nathan is supplying his own
 - [ ] No testimonials yet. When the first parent reviews arrive they go in the
       marked slot on `index.html`, directly under the results section, and a
-      quote or two belongs on `/refer/` as well. Until then every page proves
+      quote or two belongs near the results section as well. Until then every page proves
       social proof by linking out to Google, Facebook and Trustpilot through
       the `.social-proof` strip. No review text is quoted anywhere on the site,
       because there is none to quote yet

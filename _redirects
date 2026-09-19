@@ -1,0 +1,13 @@
+# Cloudflare Pages redirects. Applied at the edge, no build step involved.
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# /refer was a separate landing page for word of mouth traffic. Its content is
+# now folded into the homepage (who teaches it, where this is headed, how it
+# runs, and the richer enquiry form), so the page itself is gone. These rules
+# keep every link a family was ever given, and anything Google indexed,
+# landing somewhere real. 301 because the move is permanent.
+#
+# Both spellings are needed. A splat does not match the bare path above it.
+/refer / 301
+/refer/ / 301
+/refer/* / 301

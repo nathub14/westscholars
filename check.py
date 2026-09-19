@@ -20,7 +20,6 @@ from html.parser import HTMLParser
 PAGES = [
     "index.html",
     "current-clients/index.html",
-    "refer/index.html",
     "thanks.html",
     "guide.html",
     "404.html",

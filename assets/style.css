@@ -15,16 +15,18 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  /* --- Colour: navy ramp (brand ink) --- */
-  --navy-950: #081529;
-  --navy-900: #0a1c3d;
-  --navy-800: #0f2650;
-  --navy-700: #163566;
-  --navy-600: #24487f;
-  --navy-500: #3c62a0;
-  --navy-300: #8ba3c9;
-  --navy-200: #cdd7ee;
-  --navy-100: #dde5f6;
+  /* --- Colour: navy ramp (brand ink) ---
+     navy-900 is sampled from the crest in assets/logo.png (#0a2048), so the
+     header sits flush with the mark. The rest of the ramp holds that hue. */
+  --navy-950: #061530;
+  --navy-900: #0a2048;
+  --navy-800: #0f295a;
+  --navy-700: #183974;
+  --navy-600: #274c8e;
+  --navy-500: #4167ac;
+  --navy-300: #92a4c7;
+  --navy-200: #cfdaed;
+  --navy-100: #dce5f7;
 
   /* --- Colour: brass ramp (accent) ---
      brass-700 is the only gold safe for text on light grounds (7.2:1).
@@ -75,10 +77,10 @@
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   /* --- Type scale (1.25 ratio, fluid where it matters) --- */
-  --fs-display: clamp(2.25rem, 1.5rem + 3.2vw, 3.5rem);
+  --fs-display: clamp(2.375rem, 1.55rem + 3.4vw, 3.75rem);
   --fs-h2:      clamp(1.75rem, 1.35rem + 1.9vw, 2.5rem);
   --fs-h3:      1.375rem;
-  --fs-h4:      1.0625rem;
+  --fs-h4:      1.1875rem;
   --fs-lead:    clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
   --fs-body:    1rem;
   --fs-sm:      0.875rem;
@@ -458,10 +460,13 @@ section { padding-block: var(--sec-standard); }
 
 .hero h1 { color: var(--ink-inverse); }
 
+/* 1fr / 0.9fr rather than 1.15 / 0.85. The proof panel is the second half of
+   one composition, not a small thing parked beside the headline, so it needs
+   comparable width as well as comparable height. */
 .hero .wrap {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: var(--s-16);
+  grid-template-columns: 1fr 0.9fr;
+  gap: var(--s-12);
   align-items: center;
 }
 
@@ -500,7 +505,20 @@ section { padding-block: var(--sec-standard); }
   background: var(--brass-400);
 }
 
-.hero-actions { margin-top: var(--s-8); }
+.hero-actions { margin-top: var(--s-8); align-items: center; }
+
+/* The hero's second exit. Still a real, obvious link, but it no longer
+   competes with the gold button for the same glance. */
+.link-quiet {
+  color: var(--navy-200);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(207, 218, 237, 0.4);
+  padding-bottom: 2px;
+}
+.link-quiet::after { content: " →"; }
+.link-quiet:hover { color: var(--white); border-bottom-color: var(--white); }
 
 .hero-assurance {
   margin-top: var(--s-6);
@@ -519,10 +537,13 @@ section { padding-block: var(--sec-standard); }
   flex: none;
 }
 
-/* The hero proof panel: the most important block on the site. */
+/* The hero proof panel: the most important block on the site. The gold top
+   rule is the same one the result tiles carry, so the panel reads as the first
+   instance of the proof language rather than as unrelated furniture. */
 .proof-panel {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 3px solid var(--brass-400);
   border-radius: var(--r-lg);
   padding: var(--s-8);
 }
@@ -550,6 +571,32 @@ section { padding-block: var(--sec-standard); }
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   margin-block: var(--s-6);
+}
+
+/* The three supporting figures, stacked rather than sat in a row. Stacking is
+   what gives the panel enough height to balance the headline column beside it,
+   and it lets each figure carry a full sentence instead of a cramped label. */
+.proof-list { display: grid; gap: var(--s-4); }
+.proof-list > div {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: var(--s-4);
+  align-items: center;
+}
+.proof-list .k {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  color: var(--brass-300);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.proof-list .v { font-size: var(--fs-sm); color: var(--ink-on-navy); }
+
+.proof-foot {
+  margin-top: var(--s-6);
+  font-size: var(--fs-xs);
+  color: var(--navy-300);
 }
 
 .proof-row { display: flex; gap: var(--s-6); }
@@ -600,6 +647,11 @@ section { padding-block: var(--sec-standard); }
 }
 .social-proof a:hover { border-color: var(--brass-400); box-shadow: var(--e2); }
 
+/* Real brand marks rather than emoji. They are inline SVG because the CSP
+   allows no third party images and there is no JavaScript here to fetch any.
+   Each one is aria-hidden: the link text already names the destination. */
+.social-proof svg { width: 18px; height: 18px; flex: none; }
+
 /* On navy grounds, invert. */
 .section-navy .social-proof a,
 .hero .social-proof a {
@@ -612,6 +664,16 @@ section { padding-block: var(--sec-standard); }
 /* --------------------------------------------------------------------------
    9. Results / stats
    -------------------------------------------------------------------------- */
+
+/* The page has two navy sections, results and the guarantee. Without this they
+   read as the same block twice. .sec-anchor marks the one carrying the proof:
+   a gold hairline top and bottom, and the same corner glow the hero uses. */
+.sec-anchor {
+  position: relative;
+  background-image: radial-gradient(900px 420px at 15% -10%, rgba(208, 147, 44, 0.14), transparent 62%);
+  border-top: 2px solid var(--brass-400);
+  border-bottom: 2px solid var(--brass-400);
+}
 
 .result-headline { text-align: center; max-width: var(--w-prose); margin-inline: auto; }
 .result-headline .big {
@@ -639,7 +701,9 @@ section { padding-block: var(--sec-standard); }
   border-radius: var(--r-md);
   padding: var(--s-6);
   box-shadow: var(--e1);
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
 }
 .section-navy .stat-tile {
   background: rgba(255, 255, 255, 0.06);
@@ -656,7 +720,7 @@ section { padding-block: var(--sec-standard); }
   font-variant-numeric: tabular-nums;
 }
 .section-navy .stat-tile .k { color: var(--brass-300); }
-.stat-tile .v { font-size: var(--fs-sm); color: var(--ink-soft); margin-top: var(--s-2); }
+.stat-tile .v { font-size: var(--fs-sm); color: var(--ink-soft); text-wrap: pretty; }
 .section-navy .stat-tile .v { color: var(--ink-on-navy); }
 
 .disclosure {
@@ -764,13 +828,16 @@ section { padding-block: var(--sec-standard); }
 .vs { display: grid; gap: var(--s-3); }
 
 .vs-head { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+/* Padded to var(--s-12) on the left so the header label starts on the same
+   vertical as the text in the cells below it, which are inset that far to
+   clear their tick or cross. At var(--s-6) the two columns read as offset. */
 .vs-head > div {
   font-family: var(--font-body);
   font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  padding: var(--s-4) var(--s-6);
+  padding: var(--s-4) var(--s-6) var(--s-4) var(--s-12);
   border-radius: var(--r-md);
 }
 .vs-head .them { background: var(--warm-300); color: var(--warm-700); }
@@ -1465,6 +1532,30 @@ section { padding-block: var(--sec-standard); }
 }
 .photo-split .points li b { color: var(--navy-800); font-weight: 600; }
 
+/* The same photo sitting inside the navy results section, under the headline,
+   as evidence for the numbers rather than in a section of its own.
+   The figcaption pins its own colour on purpose: .section-navy's text rules
+   cover h2, h3, h4 and .lead and never reach a figcaption, so without this it
+   inherits the body ink and goes near invisible on navy. Same cascade trap
+   documented in CLAUDE.md, different element. */
+.results-photo {
+  margin: var(--s-12) auto 0;
+  max-width: var(--w-prose);
+}
+.results-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+  box-shadow: var(--e3);
+}
+.results-photo figcaption {
+  margin-top: var(--s-3);
+  font-size: var(--fs-xs);
+  color: var(--navy-300);
+  text-align: center;
+}
+
 /* --------------------------------------------------------------------------
    26. Choice chips
    --------------------------------------------------------------------------
@@ -1654,6 +1745,22 @@ section { padding-block: var(--sec-standard); }
   font-weight: 700;
 }
 .feature-grid li b { color: var(--navy-800); font-weight: 600; display: block; }
+
+/* Fourteen ticks in one column reads as a wall and nothing in it is findable.
+   Clustering them under four labels lets a parent scan for the thing they came
+   to check. The clusters carry no box, so this stays a list, not four cards. */
+.feature-clusters { display: grid; gap: var(--s-12); }
+
+.feature-cluster > h3 {
+  font-size: var(--fs-h4);
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin: 0 0 var(--s-2);
+}
+.feature-cluster > .feature-grid { padding-top: var(--s-4); border-top: 1px solid var(--border-strong); }
 
 /* --------------------------------------------------------------------------
    29. Utilities

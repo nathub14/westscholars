@@ -1,2 +1,10 @@
 group photo.png
 Group Photo Lighting Fix.jpg
+
+# Cloudflare Pages serves this repo root as-is, so anything committed here is
+# publicly fetchable at westscholars.com.au/<filename>. Internal planning docs,
+# briefs and tooling stay out of the repo for that reason.
+.claude/
+HOMEPAGE-REWRITE-pass1.md
+claude-code-prompt-pass1.md
+site-copy-and-design-rewrite.zip
