@@ -279,15 +279,16 @@ Cloudflare Pages, connected to this repo. Framework preset **None**, build
 command **blank**, output directory `/`. Push to the default branch and it
 deploys. `_headers` is applied at the edge with no build involved.
 
+**`www` is bound to the Pages project as a second custom domain**, so it
+serves the site directly rather than redirecting to the apex. Both hostnames
+answer `200` on every path. The only thing keeping the www copy out of the
+index is a `<link rel="canonical">` naming the apex, so every indexable page
+needs one and it must name the apex, never www. All three content pages carry
+one. The two confirmation pages do not, which does not matter, because they
+carry `noindex`.
+
 ## Still open
 
-- [ ] **`www.westscholars.com.au` answers `525` (SSL handshake failed) on every
-      request, while the apex serves fine.** Both names resolve to the same
-      Cloudflare IPs, so the www hostname is proxied but not bound to the Pages
-      project. Anyone who types or follows a www link gets a browser error page
-      instead of the site, forms and guide included. The fix is in the
-      Cloudflare dashboard, not in this repo: add `www` as a custom domain on
-      the Pages project, or give it a redirect rule to the apex
 - [ ] **Cloudflare Email Address Obfuscation (Scrape Shield) is on**, so every
       `mailto:` is rewritten at the edge into `/cdn-cgi/l/email-protection#...`
       and a decoder script is injected. The address renders as
