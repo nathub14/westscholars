@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=8">
+<link rel="stylesheet" href="/assets/style.css?v=9">
 </head>
 <body>
 
@@ -47,8 +47,13 @@
 
 <main id="main">
 
-<!-- ========================= HERO ========================= -->
-<section class="hero hero-single">
+<!-- ========================= HERO =========================
+     The cohort photo runs beside the copy here, the same as the homepage
+     hero. It is an image element and never a CSS background, so it renders
+     even when the edge serves a stale stylesheet. It carries no caption: on
+     navy every text element needs its own colour pinned, which is the cascade
+     trap documented in CLAUDE.md. -->
+<section class="hero">
   <div class="wrap">
     <div>
       <span class="eyebrow">For current West Scholars families</span>
@@ -67,6 +72,11 @@
         <a class="btn btn-outline btn-lg" href="#referral">See the referral program</a>
       </div>
     </div>
+
+    <div class="hero-photo">
+      <img src="/assets/cohort.jpg" width="1440" height="1080" decoding="async"
+           alt="The first West Scholars cohort and their parents together at the end of term.">
+    </div>
   </div>
 </section>
 
@@ -78,29 +88,6 @@
       <h2><span class="big">30%</span> improvement, baseline to final mock.</h2>
       <hr class="rule center-x">
       <p class="lead center-x">Cohort average, taken across every student, over an eight week term. Your child's own numbers are in their platform account, and I am happy to walk you through them any time.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ========================= COHORT PHOTO ========================= -->
-<section class="section-cream sec-major">
-  <div class="wrap">
-    <div class="photo-split">
-      <figure>
-        <img src="/assets/cohort.jpg" width="1440" height="1080" loading="lazy" decoding="async"
-             alt="Nathan with the first West Scholars cohort and their parents at the end of term.">
-        <figcaption>The whole first cohort at the end of term, Perth 2026. Your family is in this photo.</figcaption>
-      </figure>
-      <div class="body">
-        <span class="eyebrow">Last term</span>
-        <h2>Thank you for being the first.</h2>
-        <p>This is the whole first cohort, at the end of the term. Everything that gets built from here, the writing marking, the flashcards, the guarantee, came out of what your family put into this one.</p>
-        <ul class="points">
-          <li><b>A full eight week term.</b> Start to finish, every week</li>
-          <li><b>30% improvement.</b> Cohort average, baseline to final mock</li>
-          <li><b>Every student improved in reading.</b> No exceptions</li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -157,8 +144,8 @@
     <div class="guarantee">
       <div class="seal" aria-hidden="true">&#128564;</div>
       <span class="eyebrow">The Sleep Like a Baby Guarantee</span>
-      <h2>You can get all your money back, for any reason, no questions asked.</h2>
-      <p class="lead">At any point in the term, for any reason at all, ask and every dollar comes back to you. There is nothing to justify and no form to fill in. If it was not worth it for your family, you get a full refund.</p>
+      <h2>A 100% satisfaction guarantee.</h2>
+      <p class="lead">At any point in the term, if you are not happy with anything, you can get all your money back.</p>
       <p class="signoff">Nathan Hubbard, West Scholars Education</p>
     </div>
   </div>

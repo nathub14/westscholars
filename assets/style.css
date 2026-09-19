@@ -475,8 +475,6 @@ section { padding-block: var(--sec-standard); }
   align-items: center;
 }
 
-.hero-single .wrap { grid-template-columns: 1fr; max-width: var(--w-prose); }
-
 .hero-sub {
   margin-top: var(--s-4);
   font-size: var(--fs-body);

@@ -80,7 +80,7 @@ we are building, never as a course that already exists.
 | `assets/style.css` | The entire design system and every component |
 | `assets/logo.png` | Logo |
 | `assets/og-image.png` | 1200x630 social share card |
-| `assets/cohort.jpg` | Cohort photo, in the homepage hero and on `/current-clients/`. Derived, see below |
+| `assets/cohort.jpg` | Cohort photo, in the hero on the homepage and on `/current-clients/`. Derived, see below |
 | `assets/nathan.jpg` | Nathan's portrait in "who teaches it". Derived, see below |
 | `Perth-high-schools-guide.pdf` | The lead magnet |
 | `robots.txt`, `sitemap.xml` | Search engine directives |
@@ -177,23 +177,27 @@ tokens.
   repo root.** The source is a 3MB 4032x3024 original and must never be served.
   The shipped file is the **whole frame at its native 4:3, never cropped**,
   resized to 1440x1080 and saved as a progressive JPEG at quality 78, which
-  lands around 410KB. 1440 is roughly 2.5x the column it displays in inside
-  the hero, and exactly 2x the 720px column it displays in on
-  `/current-clients/`.
+  lands around 410KB. 1440 is roughly 2.5x the column it displays in, which
+  is the same hero grid on both pages that use it.
   An earlier version was cropped to a 1.81:1 letterbox to drop the ceiling
   space above the group and it read as wrong, so leave the framing alone.
   The children in it are minors, so nothing around it names anyone, the same
   rule the results chart follows.
-- **The cohort photo sits inside the hero, beside the copy, with no caption.**
-  It has now moved twice for the same reason: it started inside the results
-  section with a caption under it, then ran on cream directly under the hero,
-  and it is now the right hand half of the hero grid. It is the first proof a
-  visitor meets and it should not need a scroll or an explanation. `.hero-photo`
-  is the rule, and the hero's `1fr 0.9fr` grid collapses to one column at 960px
-  so the copy stays above the photo on a phone. It is on navy there, so it
-  carries no text of its own at all: a caption would need its colour pinned,
-  see the cascade note above. The strip of social links it used to sit above is
-  still there on cream, now on its own.
+- **The cohort photo sits inside the hero, beside the copy, with no caption,
+  on both pages that carry it.** On the homepage it has moved twice for the
+  same reason: it started inside the results section with a caption under it,
+  then ran on cream directly under the hero, and it is now the right hand half
+  of the hero grid. `/current-clients/` followed it there, and the
+  `.photo-split` section that used to hold the photo further down that page is
+  gone rather than duplicated. It is the first proof a visitor meets and it
+  should not need a scroll or an explanation. `.hero-photo` is the rule, and
+  the hero's `1fr 1fr` grid collapses to one column at 960px so the copy stays
+  above the photo on a phone. It is on navy there, so it carries no text of
+  its own at all: a caption would need its colour pinned, see the cascade note
+  above. The strip of social links it used to sit above is still on the
+  homepage, on cream, now on its own.
+  `.hero-single` went with this change. Nothing has a one-column hero any
+  more, and the confirmation pages use `.confirm` instead.
 - **The cohort photo is an `img` element, not a CSS background.** It was a
   background behind the hero for one deploy and it vanished on the live site:
   Cloudflare served a stale stylesheet against fresh markup, the `.hero-photo`
@@ -205,7 +209,7 @@ tokens.
   people on its own.** `_headers` asks for `max-age=3600` but the live response
   is `max-age=14400`, so that rule is not taking effect as written and is worth
   a look. Until it is fixed, the stylesheet link on every page carries a
-  version query (`/assets/style.css?v=8`). **Bump that number on every page
+  version query (`/assets/style.css?v=9`). **Bump that number on every page
   whenever you change the stylesheet in a way the HTML depends on**, otherwise
   new markup meets old CSS at the edge and the page renders wrong for hours.
   `check.py` skips link targets containing `?`, so the version does not trip
