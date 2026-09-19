@@ -15,16 +15,23 @@ traffic is warm, referred by an existing family, so the page leads with proof
 rather than a pitch. Order is deliberate:
 
 1. State plainly what we do, with the headline result beside it
-2. Prove it (results section, with the cohort photo inside it)
-3. Say who teaches it
-4. Show the method in depth (this is the real differentiator)
-5. Show the offer (what you actually get), then how it runs
-6. Answer "why not a big centre"
-7. Remove risk (one guarantee)
-8. Price, with the reason for the discount
-9. Where this is headed, for families outside the ASET track
-10. A second, lower-commitment exit (the free guide)
-11. Answer objections (FAQ), then ask (contact form)
+2. Show the cohort photo straight away, uncaptioned, with the social links
+3. Prove it in numbers (results section, the chart and the table)
+4. Say who teaches it
+5. Show the method in depth (this is the real differentiator)
+6. Show the offer (what you actually get), then how it runs
+7. Where this is headed, for families outside the ASET track
+8. Answer "why not a big centre"
+9. Remove risk (one guarantee)
+10. Price, with the reason for the discount
+11. A second, lower-commitment exit (the free guide)
+12. Answer objections (FAQ), then ask (contact form)
+
+The photo and the chart are two different proofs and are deliberately not
+bundled: the photo says there is a real cohort and has to land before anyone
+scrolls, the chart says the term worked and needs the room to be read. "Where
+this is headed" sits in the first half rather than near the footer because a
+real share of the traffic is after tutoring that is not the ASET.
 
 Every section does exactly one job. If a section cannot be described in one
 sentence starting "this section's only job is to", it does not have a reason to
@@ -57,7 +64,7 @@ we are building, never as a course that already exists.
 | `assets/style.css` | The entire design system and every component |
 | `assets/logo.png` | Logo |
 | `assets/og-image.png` | 1200x630 social share card |
-| `assets/cohort.jpg` | Cohort photo, inside the homepage results section and on `/current-clients/`. Derived, see below |
+| `assets/cohort.jpg` | Cohort photo, directly under the homepage hero and on `/current-clients/`. Derived, see below |
 | `Perth-high-schools-guide.pdf` | The lead magnet |
 | `robots.txt`, `sitemap.xml` | Search engine directives |
 | `_headers` | Cloudflare Pages security and cache headers |
@@ -106,10 +113,13 @@ tokens.
   in section 15 and `.data-table tbody th` in section 27), not to move the
   section, because moving it breaks the cream and navy alternation. When you
   add a component to a navy section, check every text element in it, not just
-  the heading. Third instance: the cohort photo's `figcaption` inside the
-  results section. `.section-navy` covers `h2`, `h3`, `h4` and `.lead` and
-  reaches no further, so a `figcaption` silently inherits the body ink and
-  goes near invisible on navy. `.results-photo figcaption` pins it. `check.py` cannot catch this: it resolves contrast from the
+  the heading. Third instance was the cohort photo's `figcaption` while the
+  photo still sat in the results section. `.section-navy` covers `h2`, `h3`,
+  `h4` and `.lead` and reaches no further, so the `figcaption` inherited the
+  body ink and went near invisible on navy. That one is gone rather than fixed:
+  the photo now runs on cream under the hero and carries no caption at all.
+  The rule it taught still stands for anything else put on navy.
+  `check.py` cannot catch this: it resolves contrast from the
   `:root` tokens and never sees the cascade. The reliable check is an iframe
   probe that composites ancestor backgrounds through their alpha and skips
   elements over a gradient ground.
@@ -155,6 +165,13 @@ tokens.
   space above the group and it read as wrong, so leave the framing alone.
   The children in it are minors, so nothing around it names anyone, the same
   rule the results chart follows.
+- **The cohort photo sits directly under the hero, on cream, with no
+  caption.** It used to live inside the results section with a caption under
+  it. Both moved for the same reason: it is the first proof a visitor meets and
+  it should not need a scroll or an explanation. `.cohort-photo` caps it at the
+  720px prose width, which is exactly half the 1440px file. If it ever goes
+  back onto navy, it needs its own pinned text colour again, see the cascade
+  note above.
 - **The cohort photo is an `img` element, not a CSS background.** It was a
   background behind the hero for one deploy and it vanished on the live site:
   Cloudflare served a stale stylesheet against fresh markup, the `.hero-photo`

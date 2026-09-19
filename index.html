@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=5">
+<link rel="stylesheet" href="/assets/style.css?v=6">
 </head>
 <body>
 
@@ -109,13 +109,22 @@
   </div>
 </section>
 
-<!-- ========================= SOCIAL PROOF =========================
-     Inside .section-cream, not a bare div. The links restyle themselves by
-     ground, so a strip with no known background renders white on white.
-     The marks are inline SVG, because the CSP allows no third party images
-     and there is no JavaScript on this site to fetch them with. -->
+<!-- ========================= PROOF STRIP =========================
+     The cohort photo runs here, straight under the hero, so the first proof a
+     visitor meets is a room of real families rather than a number. No caption:
+     the photo is the claim, and a line of text under it only described what is
+     already visible. It is an image element and never a CSS background, so it
+     still renders when the edge is serving a stale stylesheet.
+     The links below it sit inside .section-cream, not a bare div. They restyle
+     themselves by ground, so a strip with no known background renders white on
+     white. The marks are inline SVG, because the CSP allows no third party
+     images and there is no JavaScript on this site to fetch them with. -->
 <div class="section-cream">
   <div class="wrap">
+    <div class="cohort-photo">
+      <img src="/assets/cohort.jpg" width="1440" height="1080" decoding="async"
+           alt="The first West Scholars cohort and their parents together at the end of term.">
+    </div>
     <div class="social-proof">
       <a href="https://www.facebook.com/people/West-Scholars-Education/61594048093920/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#1877f2" d="M24 12.073C24 5.446 18.627 0 12 0S0 5.446 0 12.073C0 18.063 4.388 23.027 10.125 23.927v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.063 24 12.073z"/></svg>
@@ -134,11 +143,10 @@
 </div>
 
 <!-- ========================= RESULTS =========================
-     The cohort photo lives in here, under the headline, rather than in a
-     section of its own further down. The numbers say it worked and the photo
-     says these are real families, so they belong beside each other.
-     The figcaption pins its own colour: .section-navy's text rules do not
-     reach a figcaption, and the ground under it is navy, not white.
+     Numbers only. The cohort photo used to sit in here and now runs directly
+     under the hero, because it is doing a different job: the chart shows the
+     improvement and the photo shows there is a real cohort, and the second one
+     has to land before a visitor has scrolled anywhere.
      Note: check.py scans raw text, so never write a literal image tag inside
      a comment here. It reads as a real one with no alt and fails the run. -->
 <section class="section-navy sec-anchor sec-major" id="results">
@@ -149,12 +157,6 @@
       <hr class="rule center-x">
       <p class="lead">Measured on official ASET-style mocks, across an eight week term. That is the cohort average taken across every student, including the one who did not improve.</p>
     </div>
-
-    <figure class="results-photo">
-      <img src="/assets/cohort.jpg" width="1440" height="1080" loading="lazy" decoding="async"
-           alt="The first West Scholars cohort and their parents together at the end of term.">
-      <figcaption>The whole first cohort at the end of term, Perth 2026. Four students, eight weeks, a 30% average lift.</figcaption>
-    </figure>
 
     <div class="stat-row">
       <div class="stat-tile">
@@ -264,16 +266,23 @@
 -->
 
 <!-- ========================= WHO TEACHES IT =========================
-     Moved across from the old refer page, in team voice. Nathan is named as
-     Senior Tutor so another tutor can be added under him later without this
-     paragraph needing a rewrite. -->
+     Moved across from the old refer page, in team voice. Bullets rather than a
+     paragraph, because a parent scanning for the credentials should not have to
+     read a sentence to find them. The last bullet is the standard being claimed
+     rather than a fact about Nathan, so it stays as more tutors join. -->
 <section class="section-cream sec-tight">
   <div class="wrap wrap-prose">
     <div class="section-head mb-8">
       <span class="eyebrow">Who teaches it</span>
       <h2>Every tutor here has sat these exams and won them.</h2>
     </div>
-    <p class="lead center-x">West Scholars is led by Nathan Hubbard, Senior Tutor, who sat these exams, won an academic scholarship to Hale, finished with a 98 ATAR and now studies Finance and Computer Science at UWA. He teaches every Workshop and every Clinic. Anyone who teaches here will have sat and won these exams themselves, because reading about an exam is not the same as having sat one.</p>
+    <p class="lead center center-x">West Scholars is led by Nathan Hubbard, who teaches every Workshop and every Clinic.</p>
+    <ul class="cred-list mt-8">
+      <li>Academic scholarship to Hale</li>
+      <li>98 ATAR</li>
+      <li>Studies Finance and Computer Science at UWA</li>
+      <li>Every tutor here has personally sat and won these exams before teaching them</li>
+    </ul>
   </div>
 </section>
 
@@ -325,7 +334,7 @@
 <section class="section-cream sec-major" id="program">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">What $500 buys</span>
+      <span class="eyebrow">What we do</span>
       <h2>We prepare them for the real thing.</h2>
       <p>Generic tutoring teaches maths in general. We teach the paper your child will actually sit, down to its question types and time limits, along with the test craft most prep leaves out.</p>
     </div>
@@ -374,7 +383,10 @@
 
 <!-- ========================= HOW IT RUNS =========================
      Merged in from the old refer page. The venue and the timetable are settled
-     with each intake, so this states the shape rather than an address. -->
+     with each intake, so this states the shape rather than an address.
+     Everything else is spelled out to the hour on purpose. This runs straight
+     into the big centre comparison, and a parent should reach that with no open
+     question about what they are actually buying. -->
 <section class="section-white sec-major">
   <div class="wrap">
     <div class="section-head">
@@ -383,25 +395,87 @@
       <p>The shape of the program is settled. The venue and the timetable are set around the families in each intake.</p>
     </div>
 
-    <div class="grid grid-3">
+    <div class="grid grid-2 wrap-prose">
       <div class="card">
         <h3>Where</h3>
         <p>In person in Perth, at a public library. We confirm the venue with you before the term starts, once we know where families are travelling from.</p>
       </div>
       <div class="card">
-        <h3>Format</h3>
-        <p>A Workshop of four students plus a one-on-one Clinic every week. Some work suits one-on-one on its own, and we will say so when we talk.</p>
+        <h3>When</h3>
+        <p>Eight week terms, with both weekday and weekend sessions. Tell us the days that suit your family and they go into the timetable.</p>
       </div>
       <div class="card">
-        <h3>When</h3>
-        <p>Eight week terms, with both weekday and weekend sessions for the Workshop and the Clinic. Tell us the days that suit your family and they go into the timetable.</p>
+        <h3>Every week</h3>
+        <p>A two hour Workshop with four students, a 45 minute Clinic one-on-one, and homework built from the mistakes your child made that week, part of it on paper and part of it on our online platform.</p>
+      </div>
+      <div class="card">
+        <h3>Updates</h3>
+        <p>By text or call, from the tutor who teaches your child, on a number you can ring. You hear how the week went every week, not in a report at the end of term.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ========================= WHERE THIS IS HEADED =========================
+     Merged in from the old refer page. It sits this high up because a real
+     share of the traffic is after tutoring that is not the ASET, and burying
+     it near the footer loses those families. Framed as areas being built out,
+     never as courses already sitting on a shelf: only the exam track has run a
+     term and carries numbers, and the copy has to keep that line visible. -->
+<section class="section-cream sec-major" id="next">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Where this is headed</span>
+      <h2>Where this system goes after the exam track</h2>
+      <p>We are starting a number of new programs. The exam track is the one running today, and these are the areas opening next.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="skills-group">
+        <div class="meta">The exam track, wider</div>
+        <h3>Selective and scholarship entry, past Year 4 and 5</h3>
+        <p class="fine-print">Other year levels, other entry points, and the families who arrive later than most.</p>
+        <div class="tag-row mt-4">
+          <span class="tag">ASET</span>
+          <span class="tag">GATE</span>
+          <span class="tag">Perth Modern</span>
+          <span class="tag">Private school scholarships</span>
+          <span class="tag">ACER and AAS papers</span>
+          <span class="tag">Other year levels</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <div class="meta">Ahead of the curriculum</div>
+        <h3>Strong students who are not sitting an exam</h3>
+        <p class="fine-print">The same diagnostic and the same patching loop, aimed at school work instead of a paper, for a child capable of more than the year level in front of them.</p>
+        <div class="tag-row mt-4">
+          <span class="tag">NAPLAN prep</span>
+          <span class="tag">A year or more ahead</span>
+          <span class="tag">Primary maths and English</span>
+          <span class="tag">Study skills</span>
+        </div>
+      </div>
+
+      <div class="skills-group">
+        <div class="meta">Competition and senior school</div>
+        <h3>The top end, and the years that decide it</h3>
+        <p class="fine-print">Competition maths rewards what this system already trains, which is narrow practice on the thing you cannot do yet with fast feedback. So does an ATAR subject.</p>
+        <div class="tag-row mt-4">
+          <span class="tag">AMC</span>
+          <span class="tag">Olympiad</span>
+          <span class="tag">ATAR subjects</span>
+          <span class="tag">Uni-ready work</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="lead center center-x mt-12">Only the exam track has run a full term and carries results. Everything else is being built, and the families who register decide the order. Tell us what your child needs in <a href="#contact">the enquiry form</a> and it counts towards what runs next.</p>
+  </div>
+</section>
+
 <!-- ========================= COMPARISON ========================= -->
-<section class="section-cream sec-major">
+<section class="section-white sec-major">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Why not just go to a big centre</span>
@@ -449,9 +523,8 @@
     <div class="guarantee">
       <div class="seal" aria-hidden="true">&#128564;</div>
       <span class="eyebrow">The Sleep Like a Baby Guarantee</span>
-      <h2>A 100% satisfaction guarantee, no questions asked.</h2>
-      <p class="lead">If you want your money back you can get it, at any point in the term.</p>
-      <p class="signoff">Nathan Hubbard, West Scholars Education</p>
+      <h2>You can get all your money back, no questions asked.</h2>
+      <p class="lead">A 100% satisfaction guarantee, at any point in the term.</p>
     </div>
   </div>
 </section>
@@ -461,8 +534,8 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Term 4 2026</span>
-      <h2>Term 4 is $500 for eight weeks, down from $1,000.</h2>
-      <p>The term is built around Year 4 and Year 5 students sitting the ASET, GATE and private school scholarship exams. Classes are four kids each, and 8 spots are left.</p>
+      <h2>Term 4 is $500 for eight weeks.</h2>
+      <p>That price is the exam track, for Year 4 and Year 5 students sitting the ASET, GATE and private school scholarship exams. The other programs are opening as families register, so if your child needs one of those, tell us when you enquire and we will say where it is up to. Classes are four kids each, and 8 spots are left.</p>
     </div>
 
     <div class="price-card">
@@ -496,70 +569,16 @@
 
 <!-- ========================= WHY 50% OFF =========================
      One of the two places the copy speaks as "I" rather than "we". The other
-     is the reply promise on the enquiry form. -->
-<section class="section-white sec-tight">
+     is the reply promise on the enquiry form. Cream like the price above it,
+     deliberately: the price and the reason for the discount are one beat, and a
+     ground change between them would read as two. -->
+<section class="section-cream sec-tight">
   <div class="wrap wrap-prose">
     <div class="section-head mb-8">
       <h2>Why is it 50% off?</h2>
     </div>
     <p class="lead center-x center">I am still building this. Honest feedback and a few real testimonials are worth more to me at this stage than charging full price.</p>
     <p class="notice pending mt-8">The price rises over time. It has already risen since last term, and existing families keep the rate they started on.</p>
-  </div>
-</section>
-
-<!-- ========================= WHERE THIS IS HEADED =========================
-     Merged in from the old refer page. Framed as areas being built out, never
-     as courses already sitting on a shelf: only the exam track has run a term
-     and carries numbers, and the copy has to keep that line visible. -->
-<section class="section-cream sec-major" id="next">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Where this is headed</span>
-      <h2>Where this system goes after the exam track</h2>
-      <p>The exam track is what runs today. A loop that takes a Year 5 student through the ASET works on most things a student needs to get good at, so we are building it out into the areas below.</p>
-    </div>
-
-    <div class="grid grid-3">
-      <div class="skills-group">
-        <div class="meta">The exam track, wider</div>
-        <h3>Selective and scholarship entry, past Year 4 and 5</h3>
-        <p class="fine-print">Other year levels, other entry points, and the families who arrive later than most.</p>
-        <div class="tag-row mt-4">
-          <span class="tag">ASET</span>
-          <span class="tag">GATE</span>
-          <span class="tag">Perth Modern</span>
-          <span class="tag">Private school scholarships</span>
-          <span class="tag">ACER and AAS papers</span>
-          <span class="tag">Other year levels</span>
-        </div>
-      </div>
-
-      <div class="skills-group">
-        <div class="meta">Ahead of the curriculum</div>
-        <h3>Strong students who are not sitting an exam</h3>
-        <p class="fine-print">The same diagnostic and the same patching loop, aimed at school work instead of a paper, for a child capable of more than the year level in front of them.</p>
-        <div class="tag-row mt-4">
-          <span class="tag">NAPLAN prep</span>
-          <span class="tag">A year or more ahead</span>
-          <span class="tag">Primary maths and English</span>
-          <span class="tag">Study skills</span>
-        </div>
-      </div>
-
-      <div class="skills-group">
-        <div class="meta">Competition and senior school</div>
-        <h3>The top end, and the years that decide it</h3>
-        <p class="fine-print">Competition maths rewards what this system already trains, which is narrow practice on the thing you cannot do yet with fast feedback. So does an ATAR subject.</p>
-        <div class="tag-row mt-4">
-          <span class="tag">AMC</span>
-          <span class="tag">Olympiad</span>
-          <span class="tag">ATAR subjects</span>
-          <span class="tag">Uni-ready work</span>
-        </div>
-      </div>
-    </div>
-
-    <p class="lead center center-x mt-12">Only the exam track has run a full term and carries results. Everything else is being built, and the families who register decide the order. Tell us what your child needs in <a href="#contact">the enquiry form</a> and it counts towards what runs next.</p>
   </div>
 </section>
 

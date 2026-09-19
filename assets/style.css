@@ -1532,28 +1532,48 @@ section { padding-block: var(--sec-standard); }
 }
 .photo-split .points li b { color: var(--navy-800); font-weight: 600; }
 
-/* The same photo sitting inside the navy results section, under the headline,
-   as evidence for the numbers rather than in a section of its own.
-   The figcaption pins its own colour on purpose: .section-navy's text rules
-   cover h2, h3, h4 and .lead and never reach a figcaption, so without this it
-   inherits the body ink and goes near invisible on navy. Same cascade trap
-   documented in CLAUDE.md, different element. */
-.results-photo {
-  margin: var(--s-12) auto 0;
+/* The same photo directly under the hero, carrying no caption and no frame of
+   its own. It is capped at the prose width because the shipped file is 1440px
+   wide, which is exactly 2x that column, and a wider display would soften it.
+   It sits on cream with the social links, so nothing here has to fight a navy
+   ground the way the old captioned version in the results section did. */
+.cohort-photo {
   max-width: var(--w-prose);
+  margin-inline: auto;
+  padding-top: var(--s-10);
 }
-.results-photo img {
+.cohort-photo img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: var(--r-lg);
   box-shadow: var(--e3);
 }
-.results-photo figcaption {
-  margin-top: var(--s-3);
-  font-size: var(--fs-xs);
-  color: var(--navy-300);
-  text-align: center;
+
+/* The credentials under "who teaches it". A plain ticked list rather than the
+   feature grid: four short lines that a parent reads top to bottom, so one
+   column at any width. */
+.cred-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--s-3);
+  max-width: 44ch;
+  margin-inline: auto;
+}
+.cred-list li {
+  position: relative;
+  padding-left: var(--s-8);
+  color: var(--ink-soft);
+}
+.cred-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--success);
+  font-weight: 700;
 }
 
 /* --------------------------------------------------------------------------
