@@ -77,7 +77,7 @@
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   /* --- Type scale (1.25 ratio, fluid where it matters) --- */
-  --fs-display: clamp(2.375rem, 1.55rem + 3.4vw, 3.75rem);
+  --fs-display: clamp(2.125rem, 1.5rem + 2.6vw, 3.125rem);
   --fs-h2:      clamp(1.75rem, 1.35rem + 1.9vw, 2.5rem);
   --fs-h3:      1.375rem;
   --fs-h4:      1.1875rem;
@@ -455,18 +455,23 @@ section { padding-block: var(--sec-standard); }
     radial-gradient(1000px 500px at 85% -10%, rgba(208, 147, 44, 0.16), transparent 60%),
     linear-gradient(165deg, var(--navy-800) 0%, var(--navy-950) 100%);
   color: var(--ink-inverse);
-  padding-block: var(--s-24) var(--s-16);
+  padding-block: var(--s-16) var(--s-16);
 }
 
-.hero h1 { color: var(--ink-inverse); }
+/* The headline is capped in measure as well as in size. Left to the full
+   column it ran to five lines, which stretched the copy half of the hero far
+   past the photo beside it and left the photo floating in navy. */
+.hero h1 { color: var(--ink-inverse); max-width: 17ch; }
+.hero .rule { margin-block: var(--s-8) var(--s-6); }
+.hero .lead { max-width: 46ch; }
 
-/* 1fr / 0.9fr rather than 1.15 / 0.85. The proof panel is the second half of
-   one composition, not a small thing parked beside the headline, so it needs
-   comparable width as well as comparable height. */
+/* An even split. The copy and the photo are two halves of one composition, so
+   they get the same width, and the type above is sized so the two halves end
+   up close to the same height as well. */
 .hero .wrap {
   display: grid;
-  grid-template-columns: 1fr 0.9fr;
-  gap: var(--s-12);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-10);
   align-items: center;
 }
 
@@ -505,7 +510,7 @@ section { padding-block: var(--sec-standard); }
   background: var(--brass-400);
 }
 
-.hero-actions { margin-top: var(--s-8); align-items: center; }
+.hero-actions { margin-top: var(--s-6); align-items: center; }
 
 /* The hero's second exit. Still a real, obvious link, but it no longer
    competes with the gold button for the same glance. */
@@ -1409,8 +1414,8 @@ section { padding-block: var(--sec-standard); }
 /* --------------------------------------------------------------------------
    25. Photo split
    --------------------------------------------------------------------------
-   The cohort photo beside a short proof statement. A real <img>, not a CSS
-   background: the background version broke on the live site when Cloudflare
+   A photo beside a short proof statement: the cohort shot, or Nathan's
+   portrait in "who teaches it". A real <img>, not a CSS background: the background version broke on the live site when Cloudflare
    served a stale stylesheet against fresh markup, and the photo disappeared
    with nothing left in its place. An <img> renders even with no CSS at all,
    which is the property that matters for the one piece of proof on the page.
@@ -1470,42 +1475,6 @@ section { padding-block: var(--sec-standard); }
   font-weight: 700;
 }
 .photo-split .points li b { color: var(--navy-800); font-weight: 600; }
-
-/* A placeholder for a photo that has not been supplied yet. Deliberately
-   loud: a dashed frame with its own filename and pixel size written inside it,
-   so it cannot ship unnoticed the way a grey box or a stock image could.
-   Delete this rule once every slot on the site has a real photo in it. */
-.photo-slot {
-  aspect-ratio: 4 / 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-2);
-  text-align: center;
-  padding: var(--s-6);
-  border: 2px dashed var(--navy-300);
-  border-radius: var(--r-lg);
-  background: var(--ground);
-  color: var(--ink-soft);
-}
-.photo-slot .ps-mark {
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  font-weight: 700;
-  color: var(--navy-300);
-}
-.photo-slot .ps-text {
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--navy-800);
-}
-.photo-slot .ps-size {
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
 
 /* --------------------------------------------------------------------------
    26. Choice chips
